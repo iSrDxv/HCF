@@ -14,7 +14,7 @@ class PlayerHCF extends Player
   
   private ?Faction $faction;
   
-  private string $factionRole;
+  private string $factionRole = "null";
   
   public function setFaction(Faction $faction): void
   {
