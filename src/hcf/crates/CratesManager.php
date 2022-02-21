@@ -4,6 +4,7 @@ namespace hcf\crates;
 
 use hcf\crates\types\Crate;
 use hcf\Loader;
+use pocketmine\item\Item;
 
 class CratesManager
 {
@@ -29,6 +30,12 @@ class CratesManager
             $crates[] = $crateName[0];
         }
         return $crates;
+    }
+
+    public static function getRandomReward(string $crateName): Item
+    {
+        $crate = self::getCrate($crateName);
+        return $crate->getRandomReward();
     }
 
 }

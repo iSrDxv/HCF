@@ -4,6 +4,7 @@ namespace hcf\crates\types;
 
 use hcf\crates\utils\CratesUtils;
 use hcf\Loader;
+use pocketmine\item\Item;
 use pocketmine\utils\Config;
 
 class Crate
@@ -55,6 +56,11 @@ class Crate
     public function getCrateName(): ?string
     {
         return $this->crateName;
+    }
+
+    public function getRandomReward(): Item
+    {
+        return $this->items[array_rand($this->items)];
     }
 
 }
