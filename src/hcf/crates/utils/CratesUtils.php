@@ -16,10 +16,10 @@ class CratesUtils
     {
         $menu = InvMenu::create(InvMenuTypeIds::TYPE_CHEST);
         $menu->setName(TextFormat::colorize("&cLoot Crate Edit"));
-        $menu->setListener(function (InvMenuTransaction $transaction){
+        $menu->setListener(function (InvMenuTransaction $transaction) {
             $transaction->continue();
         });
-        $menu->setInventoryCloseListener(function() use ($crate, $menu, $playerHCF){
+        $menu->setInventoryCloseListener(function () use ($crate, $menu, $playerHCF) {
             $contents = $menu->getInventory()->getContents();
             $playerHCF->getInventory()->setContents($contents);
         });
