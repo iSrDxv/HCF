@@ -12,7 +12,7 @@ class PlayerHCF extends Player
   
   private $goldenApple = 0;
   
-  private Faction $faction;
+  private ?Faction $faction;
   
   private string $factionRole;
   
