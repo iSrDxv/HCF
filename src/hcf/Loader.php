@@ -35,7 +35,7 @@ use hcf\discord\Logger;
 
 class Loader extends PluginBase {
    
-   public const PLUGIN_VERSION = "0.4.5";
+   public const PLUGIN_VERSION = "1.5.0";
    
    public static Loader $instance;
    
@@ -45,6 +45,7 @@ class Loader extends PluginBase {
    
    public function onLoad(): void 
    {
+     self::$instance = $this;
      if (self::PLUGIN_VERSION !== $this->getDescription()->getVersion()) {
       $this->getLogger()->error("Please don't change the `plugin.yml` version, that helps us investigate plugin errors, thanks");
       $this->getLogger()->warning("Any changes you make to the plugin version will not be supported by us.");
@@ -62,7 +63,7 @@ class Loader extends PluginBase {
      /*
      MySQLProvider::connect();
      */
-     SQLite3Provider::init();
+     (new SQLite3Provider())->init();
      YAMLProvider::init();
      $this->discord = new Logger($this->getConfig()->get("webhook-url")/*, $this->getConfig()->get("webhook-check")*/);
      (new EventListener())->init();
@@ -78,6 +79,8 @@ class Loader extends PluginBase {
 //      //   //////  //               //////    ///////   //     // //////// 
 ");
      $this->getLogger()->notice("Plugin enabled!!");
+     $author = implode(",", $this->getDescription()->getAuthors());
+     $this->getLogger()->notice("Authors: §b{$author}");
      $this->getLogger()->info("==========================================");
     
    /* $entityFactory = EntityFactory::getInstance();
