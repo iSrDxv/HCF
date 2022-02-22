@@ -15,5 +15,5 @@
 </p>
 
 # Starting
-[Documentation](https://github.com/iSrDxv/HCF/wiki)
-[Discord](https://discord.gg/VPb6fBczp9)
+- [Documentation](https://github.com/iSrDxv/HCF/wiki)
+- [Discord](https://discord.gg/VPb6fBczp9)
