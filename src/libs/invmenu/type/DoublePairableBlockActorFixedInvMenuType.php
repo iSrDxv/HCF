@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace muqsit\invmenu\type;
+namespace libs\invmenu\type;
 
-use muqsit\invmenu\inventory\InvMenuInventory;
-use muqsit\invmenu\InvMenu;
-use muqsit\invmenu\type\graphic\BlockActorInvMenuGraphic;
-use muqsit\invmenu\type\graphic\InvMenuGraphic;
-use muqsit\invmenu\type\graphic\MultiBlockInvMenuGraphic;
-use muqsit\invmenu\type\graphic\network\InvMenuGraphicNetworkTranslator;
-use muqsit\invmenu\type\util\InvMenuTypeHelper;
+use libs\invmenu\inventory\InvMenuInventory;
+use libs\invmenu\InvMenu;
+use libs\invmenu\type\graphic\BlockActorInvMenuGraphic;
+use libs\invmenu\type\graphic\InvMenuGraphic;
+use libs\invmenu\type\graphic\MultiBlockInvMenuGraphic;
+use libs\invmenu\type\graphic\network\InvMenuGraphicNetworkTranslator;
+use libs\invmenu\type\util\InvMenuTypeHelper;
+use libs\invmenu\type\FixedInvMenuType;
 use pocketmine\block\Block;
 use pocketmine\block\tile\Chest;
 use pocketmine\inventory\Inventory;
