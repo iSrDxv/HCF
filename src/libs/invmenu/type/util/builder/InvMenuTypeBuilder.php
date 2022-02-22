@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace muqsit\invmenu\type\util\builder;
+namespace libs\invmenu\type\util\builder;
 
-use muqsit\invmenu\type\InvMenuType;
+use libs\invmenu\type\InvMenuType;
 
 interface InvMenuTypeBuilder{
 
