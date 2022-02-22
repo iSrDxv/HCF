@@ -2,7 +2,7 @@
 
 namespace hcf\provider;
 
-use pocketmine\utils\Config;
+use pocketmine\utils\{Config,TextFormat as Text};
 
 use hcf\Loader;
 

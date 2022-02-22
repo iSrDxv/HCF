@@ -13,7 +13,7 @@ class SQLite3Provider
   
   protected SQLite3 $connection;
   
-  public static function init(): void
+  public function init(): void
   {
   $sql = new SQLite3(Loader::getInstance()->getDataFolder() . "factions.db");
   $sql->exec("CREATE TABLE IF NOT EXISTS claims(factionName TEXT PRIMARY KEY, x_1 INT, y_1 INT, z_1 INT, x_2 INT, y_2 INT, z_2 INT, level TEXT);");
@@ -23,16 +23,16 @@ class SQLite3Provider
   $sql->exec("CREATE TABLE IF NOT EXISTS tops(factionName TEXT PRIMARY KEY, points INT);");
   $sql->exec("CREATE TABLE IF NOT EXISTS members(factionName TEXT PRIMARY KEY, members TEXT);");
   $sql->exec("CREATE TABLE IF NOT EXISTS players(username TEXT PRIMARY KEY, factionName TEXT, factionRank TEXT);");
-  $this->connection = ($sql instanceof SQLite3) ? $sql : null;
+  $this->connection = $sql;
   Loader::getInstance()->getLogger()->notice(Text::GREEN . "SQLite3Provider ⋙ uploaded successfully");
   }
   
-  public static function closeConnection(): void
+  public function closeConnection(): void
   {
   $this->connection->close();
   }
   
-  public static function getDatabase()
+  public function getDatabase()
   {
   return $this->connection ?? null;
   }
