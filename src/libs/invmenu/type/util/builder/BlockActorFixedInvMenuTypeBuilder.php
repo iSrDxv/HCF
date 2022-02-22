@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace libs\invmenu\type\util\builder;
 
 use LogicException;
+use libs\invmenu\type\util\builder\InvMenuTypeBuilder;
 use libs\invmenu\type\BlockActorFixedInvMenuType;
 use libs\invmenu\type\graphic\network\BlockInvMenuGraphicNetworkTranslator;
 
