@@ -7,7 +7,7 @@ use hcf\PlayHCF;
 
 use pocketmine\item\{Item, Armor, Tool};
 
-use pocketmine\utils\TextFormat as TE;
+use pocketmine\utils\TextFormat;
 use pocketmine\command\{CommandSender, PluginCommand};
 
 class RepairCommand extends PluginCommand {
@@ -25,7 +25,7 @@ class RepairCommand extends PluginCommand {
 		 */
 		 	public function execute(CommandSender $sender, String $label, Array $args) : void {
 		if(empty($args)){
-            $sender->sendMessage(TE::RED."Argument #1 is not valid for command syntax");
+            $sender->sendMessage(TextFormat::RED."Argument #1 is not valid for command syntax");
             return;
 		}
 	}
