@@ -31,4 +31,5 @@ HyperDevs & associates have made an effort to develop a Core Base of HCF, which 
 We plan to keep this plugin active for community use, so it will receive future updates, including optimization of it.
 
 Important
+<br>
 ![Important](https://img.shields.io/badge/Review%20the%20area%20of%20issues%20to%20stay%20informed-FB503B?style=for-the-badge&logo=important&logoColor=black)
