@@ -23,3 +23,5 @@
   <img src="resources/images/icon.png" /><br>
   <h1>Base core from HCF for PocketMine-MP 4.0.0</h1>
 </p>
+
+<h4>Information</h4>
