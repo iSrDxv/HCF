@@ -37,7 +37,13 @@ factions:
 commands-cooldown:
  report: 45
  logout: 30
- #f-stuck: 50 
+ f-stuck: 50 
  
 blocked-items: [45:0]
 blocked-blocks: [45:0]
+
+# event message
+# %name% toma el valor del nombre del jugador.
+
+joinMessage: "§l§8[§2+§8] §2%name% se ha unido al servidor."
+quitMessage: "§l§8[§4-§8] §4%name% se ha salido al servidor."
