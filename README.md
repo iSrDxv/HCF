@@ -45,3 +45,19 @@ You can edit the plugin from the folder:
 <li><a href="https://github.com/iSrDxv/HCF/tree/main/resources">Resources</a></li>
 </ul><br>
 or also inside the "plugin_data/HCF" folder that will be generated inside your console.
+
+<b>Fully Customizable</b>
+You can customize the plugin to your liking, by editing:
+<ul>
+<br>
+<li>Titles (Applies to the whole server)</li>
+<li>MOTD</li>
+<li>Server Messages</li>
+<li>Scoreboard</li>
+<li>Chest Inventory</li>
+<li>BossBar</li>
+<li>Factions System + Messages</li>
+<li>Kits System</li>
+<li>Items & Cooldown</li>
+<li>Events + Messages (Koth, SOTW, EOTW)</li>
+<li>Lang System</li>
