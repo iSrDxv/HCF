@@ -19,3 +19,7 @@
 - [Documentation](https://github.com/iSrDxv/HCF/wiki)
 - [Discord](https://discord.gg/VPb6fBczp9)
 -->
+<p align="center">
+  <img src="resources/images/icon.png" /><br>
+  <h1>Base core from HCF for PocketMine-MP 4.0.0</h1>
+</p>
