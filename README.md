@@ -37,7 +37,7 @@ We plan to keep this plugin active for community use, so it will receive future 
 ## Support and Configuration
 
 *This plugin it is only available for PocketMine-MP 4.
-
+</hr>
 <b>How to configure the plugin?</b>
 You can edit the plugin from the folder:
 <ul>
