@@ -21,15 +21,19 @@ class PlayerListener extends Listener
   public function joinEvent(PlayerJoinEvent $event): void
   {
     $player = $event->getPlayer();
+    $name = $player->getName();
     
-    $event->setJoinMessage(TE::GRAY."[".TE::GREEN."+".TE::GRAY."] ".TE::GREEN.$player->getName().TE::GRAY." entered the server.");
+    $joinMessage = str_replace("%name%", $name, $this->getConfig()->get("joinMessage"));
+    $event->setJoinMessage($joinMessage);
  }
   
   public function quitEvent(PlayerQuitEvent $event): void
   {
     $player = $event->getPlayer();
+    $name = $player->getName();
     
-    $event->setQuitMessage(TE::GRAY."[".TE::RED."-".TE::GRAY."]".TE::RED.$player->getName().TE::GRAY." left the server.");
+    $quitMessage = str_replace("%name%", $name, $this->getConfig()->get("quitMessage"));
+    $event->setQuitMessage($quitMessage);
   }
   
   public function creation(PlayerCreationEvent $event): void 
