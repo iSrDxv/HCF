@@ -45,8 +45,8 @@ You can edit the plugin from the folder:
 <li><a href="https://github.com/iSrDxv/HCF/tree/main/resources">Resources</a></li>
 </ul><br>
 or also inside the "plugin_data/HCF" folder that will be generated inside your console.
-
-<b>Fully Customizable</b>
+<br>
+<b>Fully Customizable</b><br>
 You can customize the plugin to your liking, by editing:
 <ul>
 <br>
