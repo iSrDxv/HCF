@@ -46,7 +46,7 @@ You can edit the plugin from the folder:
 </ul><br>
 or also inside the "plugin_data/HCF" folder that will be generated inside your console.<br>
 
-##Fully Customizable
+## Fully Customizable
 You can customize the plugin to your liking, by editing:
 <ul>
 <br>
