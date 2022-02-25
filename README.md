@@ -39,8 +39,9 @@ We plan to keep this plugin active for community use, so it will receive future 
 *This plugin it is only available for PocketMine-MP 4.
 </hr>
 <b>How to configure the plugin?</b>
-You can edit the plugin from the folder:<br>
+You can edit the plugin from the folder:
+<br>
 <ul>
 <li><a href="https://github.com/iSrDxv/HCF/tree/main/resources">Resources</a></li>
-</ul></br>
+</ul><br>
 or also inside the "plugin_data/HCF" folder that will be generated inside your console.
