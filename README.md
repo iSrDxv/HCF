@@ -82,4 +82,4 @@ You can customize the plugin to your liking, by editing:
 <ul>
 <li><a href="https://github.com/zBxutii">zBxutii</li>
 <li><a href="https://github.com/vzSpell">vzSpell</li>
-<ul>
+</ul>
