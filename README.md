@@ -71,7 +71,7 @@ You can customize the plugin to your liking, by editing:
 <img alt="GitHub commits since latest release (by SemVer)" src="https://img.shields.io/github/commits-since/iSrDxv/HCF/latest/main?sort=semver&style=for-the-badge"><br>
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/iSrDxv/HCF?style=for-the-badge">
 
-## contributors
+## Contributors
 
 <b>@HyperDevs</b>
 <ul>
