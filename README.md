@@ -70,3 +70,16 @@ You can customize the plugin to your liking, by editing:
 <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/iSrDxv/HCF/main?style=for-the-badge"><br>
 <img alt="GitHub commits since latest release (by SemVer)" src="https://img.shields.io/github/commits-since/iSrDxv/HCF/latest/main?sort=semver&style=for-the-badge"><br>
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/iSrDxv/HCF?style=for-the-badge">
+
+## contributors
+
+<b>@HyperDevs</b>
+<ul>
+<li><a href="https://github.com/iSrDxv">iSrDxv</li>
+<li><a href="https://github.com/iDev90G">imDevi</li>
+</ul><br>
+<b>Associates</b>
+<ul>
+<li><a href="https://github.com/zBxutii">zBxutii</li>
+<li><a href="https://github.com/vzSpell">vzSpell</li>
+<ul>
