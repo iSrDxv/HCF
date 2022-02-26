@@ -75,11 +75,11 @@ You can customize the plugin to your liking, by editing:
 
 <b>@HyperDevs</b>
 <ul>
-<li><a href="https://github.com/iSrDxv">iSrDxv</li>
+<li><a href="https://github.com/iSrDxv">iSrDxv</a></li>
 <li><a href="https://github.com/iDev90G">imDevi</a></li>
 </ul><br>
 <b>Associates</b>
 <ul>
-<li><a href="https://github.com/zBxutii">zBxutii</li>
-<li><a href="https://github.com/vzSpell">vzSpell</li>
+<li><a href="https://github.com/zBxutii">zBxutii</a></li>
+<li><a href="https://github.com/vzSpell">vzSpell</a></li>
 </ul>
