@@ -63,7 +63,7 @@ You can customize the plugin to your liking, by editing:
 <li>Lang System</li>
 
 ## Stats
-<img alt="GitHub release (latest SemVer including pre-releases)" src="https://img.shields.io/github/v/release/iSrDxv/HCF?display_name=tag&include_prereleases&sort=semver&style=for-the-badge"
+<img alt="GitHub release (latest SemVer including pre-releases)" src="https://img.shields.io/github/v/release/iSrDxv/HCF?display_name=tag&include_prereleases&sort=semver&style=for-the-badge">
 <img alt="GitHub" src="https://img.shields.io/github/license/iSrDxv/HCF?style=for-the-badge"><br>
 <img alt="GitHub Sponsors" src="https://img.shields.io/github/sponsors/iSrDxv?logo=github&style=for-the-badge"><br>
 <a href="https://discord.gg/VPb6fBczp9"><img src="https://img.shields.io/discord/936725661945573426?label=discord&logo=discord&style=for-the-badge" alt="Discord"></a><br>
