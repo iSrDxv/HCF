@@ -80,6 +80,6 @@ You can customize the plugin to your liking, by editing:
 </ul><br>
 <b>Associates</b>
 <ul>
-<li><a href="https://github.com/zBxutii">zBxutii</a></li>
+
 <li><a href="https://github.com/vzSpell">vzSpell</a></li>
 </ul>
