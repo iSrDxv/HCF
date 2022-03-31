@@ -81,5 +81,5 @@ You can customize the plugin to your liking, by editing:
 <b>Associates</b>
 <ul>
 
-<li><a href="https://github.com/vzSpell">vzSpell</a></li>
+
 </ul>
