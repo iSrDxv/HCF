@@ -1,6 +1,6 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/iSrDxv/HCF
 build-by-default: 
 branches:
-- mai
+- isrdxv
 projects: []
 ...
