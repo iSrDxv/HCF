@@ -73,7 +73,7 @@ You can customize the plugin to your liking, by editing:
 
 ## Contributors
 
-<b>@HyperDevs</b>
+<b>@ExodusDevs</b>
 <ul>
 <li><a href="https://github.com/iSrDxv">iSrDxv</a></li>
 <li><a href="https://github.com/iDev90G">imDevi</a></li>
