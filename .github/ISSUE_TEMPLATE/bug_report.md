@@ -3,7 +3,7 @@ name: Bug report
 about: Create a report to help us improve
 title: ''
 labels: bug
-assignees: iSrDxv, iDev90G, vzSpell
+assignees: iSrDxv, iDev90G
 
 ---
 
