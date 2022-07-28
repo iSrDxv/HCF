@@ -54,4 +54,6 @@ body:
     attributes:
       label: Log output
       description: Copy and paste the log output. or upload the crashdump file
+      validations:
+        required: true
 ---
