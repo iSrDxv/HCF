@@ -28,9 +28,23 @@ class BlocksHCF
   /**
    * createWall($world, $pos, GLASS());
    */
-  public function createWall(World $world, Vector3 $vector, Block $block): void
+  public function createWall(Player $player, Vector3 $region, Block $block): void
   {
-    $world->setBlock($vector, $block);
+    if ($block instanceof Air) {
+      return;
+    }
+    $coord = null;
+    for($x = $player->getPosition()->x; $x <= $region->x; $x++) {
+      for($y = $player->getPosition()->y; $y <= $region->y; $y++) {
+        for($z = $player->getPosition()->z; $z <= $region->z; $z++) {
+          $coord = new Vector3($x, $y, $z);
+        }
+      }
+    }
+    if (empty($coord)) {
+      return;
+    }
+    $player->getPosition()->getWorld()->setBlock($coord, $block);
   }
   
 }
