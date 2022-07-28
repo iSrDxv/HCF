@@ -6,3 +6,5 @@ server-description: "A simple hcf core, i think"
 server-motd: "MyServer - HCF"
 # This is necessary, we cannot guarantee that your server will support a thousand simultaneous players, add limits to your ideas man
 server-slots: 100
+faction:
+ max-players: 1
