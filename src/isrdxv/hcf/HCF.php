@@ -38,4 +38,15 @@ class HCF
   
   public const EOTW_WEBHOOK = "";
   
+  public const PLUGIN_VERSION = "1.0.0";
+  
+  public const DEVELOPMENT_VERSION = "1";
+  
+  public const IS_IN_DEVELOPMENT = true;
+  
+  public static function VERSION(): string
+  {
+    return self::IS_IN_DEVELOPMENT ? self::PLUGIN_VERSION . "+dev" . self::DEVELOPMENT_VERSION : self::PLUGIN_VERSION;
+  }
+  
 }
