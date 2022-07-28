@@ -5,8 +5,9 @@ namespace isrdxv\hcf\utils;
 use pocketmine\network\mcpe\protocol\UpdateBlockPacket;
 use pocketmine\network\mcpe\protocol\types\BlockPosition;
 use pocketmine\network\mcpe\convert\RuntimeBlockMapping;
-use pocketmine\block\VanillaBlocks;
+use pocketmine\block\Block;
 use pocketmine\world\Position;
+use pocketmine\math\Vector3;
 
 class BlocksHCF
 {
@@ -24,6 +25,12 @@ class BlocksHCF
     }
   }
   
-  public function createWall(): void;
+  /**
+   * createWall($world, $pos, GLASS());
+   */
+  public function createWall(World $world, Vector3 $vector, Block $block): void
+  {
+    $world->setBlock($vector, $block);
+  }
   
 }
