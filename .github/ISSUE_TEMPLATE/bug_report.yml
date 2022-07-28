@@ -1,116 +1,57 @@
 ---
-
 name: Bug report
-
 about: Create a report to help us improve
-
 title: 'Creative Title'
-
 labels: bug
-
 assignees: 
-
  - iSrDxv
-
  - iDev90G
-
 body:
-
   - type: markdown
-
     attributes:
-
-    value: |
-
-      We do not guarantee to answer you in time so please be patient with me.
-
+    value: "We do not guarantee to answer you in time so please be patient with me."
   - type: input
-
     id: describe
-
     attributes:
-
       label: Describe the bug
-
       description: A clear and concise description of what the bug is.
-
       placeholder: Internal Server Error
-
     validations:
-
       required: true
-
   - type: textarea
-
     id: detail 
-
     attributes:
-
       label: Can you explain more clearly?
-
       description: And what did you expect would happen too?
-
       placeholder: Tell us
-
       value: "i dont know"
-
     validations:
-
       required: true
-
   - type: dropdown
-
     id: version
-
     attributes:
-
       label: Version
-
       description: What version of our plugin are you running?
-
       options:
-
         - 0.1.5 (Alpha)
-
     validations:
-
       required: true
-
   - type: dropdown
-
     id: device
-
     attributes:
-
       label: What device were you testing it on?
-
       multiple: true
-
       options:
-
         - Android
-
         - Apple
-
         - Windows 10
-
         - FireFox
-
         - Windows 32bits
-
   - type: textarea
-
     id: log
-
     attributes:
-
       label: Log output
-
       description: Copy and paste the log output. or upload the crashdump file
-
-      validations:
-
-        required: true
-
+    validations:
+      required: true
 ---
-
