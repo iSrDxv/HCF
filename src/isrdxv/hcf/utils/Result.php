@@ -1,6 +1,6 @@
 <?php
 
-namespace isrdxv\hcf\util;
+namespace isrdxv\hcf\utils;
 
 use pocketmine\item\Item;
 //use pocketmine\nbt\tag\CompoundTag;
