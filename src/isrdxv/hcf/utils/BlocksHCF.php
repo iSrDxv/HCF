@@ -10,14 +10,16 @@ use pocketmine\world\Position;
 
 class BlocksHCF
 {
-  
-  public function createTower(Player $player, Position $position): void
+  /**
+   * createTower($player, $blockId, $block->getPosition());
+   */
+  public function createTower(Player $player, int $blockId, Position $position): void
   {
     for($y = $position->getY(); $y < $position->getY() + 10; $y++) {
       if (!$position->getWorld()->getBlock(($position = $position->add(0, $y, 0))) instanceof Air) {
         continue;
       }
-      $pk = UpdateBlockPacket::create(BlockPosition::fromVector3($position), RuntimeBlockMapping::getInstance()->toRuntimeId(VanillaBlocks::GLASS()->getFullId()), UpdateBlockPacket::FLAG_NETWORK, UpdateBlockPacket::DATA_LAYER_NORMAL);
+      $pk = UpdateBlockPacket::create(BlockPosition::fromVector3($position), RuntimeBlockMapping::getInstance()->toRuntimeId($blockId), UpdateBlockPacket::FLAG_NETWORK, UpdateBlockPacket::DATA_LAYER_NORMAL);
       $player->getNetworkSession()->sendDataPacket($pk);
     }
   }
