@@ -9,7 +9,7 @@ assignees:
 body:
   - type: markdown
     attributes:
-    value: "We do not guarantee to answer you in time so please be patient with me."
+      value: "We do not guarantee to answer you in time so please be patient with me."
   - type: input
     id: describe
     attributes:
