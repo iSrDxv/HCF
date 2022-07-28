@@ -1,4 +1,5 @@
 name: HCF
+load: "STARTUP"
 api: 4.0.0
 main: isrdxv\hcf\HCFLoader
 version: 0.0.0
