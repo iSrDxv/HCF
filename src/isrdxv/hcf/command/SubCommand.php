@@ -2,8 +2,6 @@
 
 namespace isrdxv\hcf\command;
 
-use pocketmine\command\CommandSender;
-
 abstract class SubCommand 
 {
   
@@ -28,9 +26,9 @@ abstract class SubCommand
     $this->aliases = $aliases;
   }
   
-  public function getName(): ?string
+  public function getName(): string
   {
-    return $this->name ?? null;
+    return $this->name;
   }
   
   public function getUsage(): string
@@ -43,9 +41,9 @@ abstract class SubCommand
     return $this->aliases;
   }
   
-  public function getPermission(): ?string
+  public function getPermission(): string
   {
-    return $this->permission ?? null;
+    return $this->permission;
   }
   
   public function setDescription(string $desc): void
@@ -63,12 +61,12 @@ abstract class SubCommand
     $this->aliases = $aliases;
   }
   
-  public function setPermission(string $permission): void
+  public function setPermission(?string $permission): void
   {
     if ($permission === null) return;
     $this->permission = $permission;
   }
  
-  abstract public function execute(CommandSender $sender, string $label, array $args): void;
+  abstract public function execute(\pocketmine\command\CommandSender $sender, string $label, array $args): void;
   
 }
