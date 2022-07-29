@@ -44,7 +44,7 @@ class BlocksHCF
     if (empty($coord)) {
       return;
     }
-    $player->getPosition()->getWorld()->setBlock($coord, $block);
+    $player->getWorld()->setBlock($coord, $block);
   }
   
 }
