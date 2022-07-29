@@ -26,6 +26,7 @@ class CrateCommand extends Command
       $subCommand = $this->getSubCommand("help");
       if ($subCommand !== null) {
         $subCommand->execute($sender, $label, $args);
+        return;
       }
     } else {
       $subCommand = $this->getSubCommand($args[0]);
