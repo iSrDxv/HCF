@@ -16,6 +16,11 @@
 
 namespace isrdxv\hcf;
 
+use isrdxv\hcf\provider\{
+  Provider,
+  ProviderDB
+};
+
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\SingletonTrait;
 
@@ -23,11 +28,37 @@ class HCFLoader extends PluginBase
 {
   use SingletonTrait;
   
+  private Provider $provider;
+  
+  private ProviderDB $providerDB;
+  
   public ?string $data_extension = null;
   
-  public function onLoad (): void
+  public function onLoad(): void
   {
-    
+    self::setInstance($this);
+    $this->saveDefaultConfig();
+    switch($this->getConfig()->get("provider")["database"]["name"]){
+      case "sqlite3":
+        $this->providerDB;
+      break;
+      case "mysql":
+        $this->providerDB;
+      break;
+      default:
+        $this->getServer()->getPluginManager()->disablePlugin($this);
+      break;
+    }
+  }
+  
+  public function getProvider(): Provider
+  {
+    return $this->provider;
+  }
+  
+  public function getProviderDB(): ProviderDB
+  {
+    return $this->providerDB;
   }
   
 }
