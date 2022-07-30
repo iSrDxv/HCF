@@ -17,8 +17,17 @@
 namespace isrdxv\hcf;
 
 use pocketmine\plugin\PluginBase;
+use pocketmine\utils\SingletonTrait;
 
 class HCFLoader extends PluginBase
 {
+  use SingletonTrait;
+  
+  public ?string $data_extension = null;
+  
+  public function onLoad (): void
+  {
+    
+  }
   
 }

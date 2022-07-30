@@ -11,10 +11,10 @@ use pocketmine\utils\TextFormat;
 class CrateCommand extends Command
 {
   
-  public function __construct(PluginBase $plugin)
+  public function __construct()
   {
-    parent::__construct($plugin, "crate", "Crate Commands", "/crate help");
-    //$this->addSubCommand(new HelpSubCommand());
+    parent::__construct("crate", "Crate Commands", "/crate help");
+    $this->addSubCommand(new HelpSubCommand());
   }
   
   public function execute(CommandSender $sender, string $label, array $args): void

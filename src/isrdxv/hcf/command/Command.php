@@ -2,22 +2,13 @@
 
 namespace isrdxv\hcf\command;
 
-use pocketmine\plugin\{
-  PluginBase,
-  PluginOwned,
-  PluginOwnedTrait
-};
-
-abstract class Command extends \pocketmine\command\Command implements PluginOwned
+abstract class Command extends \pocketmine\command\Command
 {
-  use PluginOwnedTrait;
-  
   /** @var SubCommand[] **/
   private array $subCommands = [];
   
-  public function __construct(PluginBase $owner, string $name, string $description, string $usage, array $aliases = [])
+  public function __construct(string $name, string $description, string $usage, array $aliases = [])
   {
-    $this->owningPlugin = $owner;
     parent::__construct($name, $description, $usage, $aliases);
   }
   
