@@ -4,29 +4,24 @@ namespace libs\cooldown;
 
 use Closure;
 
+use libs\cooldown\Cooldown;
+
 use pocketmine\scheduler\Task;
 
 class CooldownTask extends Task
 {
-  protected int $duration;
+  protected Cooldown $cooldown;
   
-  protected Closure $inCooldown;
-  
-  protected Closure $noCooldown;
-  
-  public function __construct(int $duration, Closure $inCooldown, Closure $noCooldown)
+  public function __construct(Cooldown $cooldown)
   {
-    $this->duration = $duration;
-    $this->inCooldown = $inCooldown;
-    $this->noCooldown = $noCooldown;
+    $this->cooldown = $cooldown;
   }
   
   public function onRun(): void
   {
-    $this->duration--;
-    ($this->inCooldown)($this->duration);
-    if ($this->duration === 0) {
-      ($this->noCooldown);
+    $this->cooldown->onStarting();
+    if ($this->cooldown->duration === 0) {
+      $this->cooldown->onClose();
       $this->getHandler()->cancel();
     }
   }

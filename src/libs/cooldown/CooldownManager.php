@@ -16,7 +16,7 @@ class CooldownManager
     if (isset($this->cooldowns[$cooldownName])) {
       return;
     }
-    $this->cooldowns[$cooldownName] = new Cooldown($cooldownName, $duration, $inCooldown, $noCooldown);
+    $this->cooldowns[$cooldownName] = new Cooldown($this, $cooldownName, $duration, $inCooldown, $noCooldown);
   }
   
   public function get(string $cooldownName): ?Cooldown
@@ -26,8 +26,8 @@ class CooldownManager
   
   public function delete(string $cooldownName): void
   {
-    if (!empty($cooldown = $this->cooldowns[$cooldownName])) {
-      unset($cooldown);
+    if (isset($this->cooldowns[$cooldownName])) {
+      unset($this->cooldowns[$cooldownName]);
     }
   }
   

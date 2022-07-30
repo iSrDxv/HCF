@@ -6,6 +6,8 @@ use Closure;
 
 class Cooldown
 {
+  private CooldownManager $manager;
+  
   protected string $name;
   
   protected int $duration;
@@ -14,8 +16,9 @@ class Cooldown
   
   protected Closure $noCooldown;
   
-  public function __construct(string $name, int $duration, Closure $inCooldown, Closure $noCooldown)
+  public function __construct(CooldownManager $manager, string $name, int $duration, Closure $inCooldown, Closure $noCooldown)
   {
+    $this->manager = $manager;
     $this->name = $name;
     $this->duration = $duration;
     $this->inCooldown = $inCooldown;
@@ -32,14 +35,16 @@ class Cooldown
     return $this->duration;
   }
   
-  public function getInCooldown(): Closure
+  public function onStarting(): void
   {
-    return $this->inCooldown;
+    $this->duration--;
+    ($this->inCooldown)($this->duration);
   }
   
-  public function getNoCooldown(): Closure
+  public function onClose(): void
   {
-    return $this->noCooldown;
+    ($this->noCooldown);
+    $this->manager->delete($this->name);
   }
   
 }

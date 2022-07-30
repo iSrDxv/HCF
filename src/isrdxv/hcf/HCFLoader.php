@@ -49,6 +49,19 @@ class HCFLoader extends PluginBase
         $this->getServer()->getPluginManager()->disablePlugin($this);
       break;
     }
+    switch($this->getConfig()->get("provider")["data"]["name"]){
+      case "yaml":
+        $this->data_extension = "yml";
+        $this->provider;
+      break;
+      case "json":
+        $this->data_extension = "json";
+        $this->provider;
+      break;
+      default:
+        $this->getServer()->getPluginManager()->disablePlugin($this);
+      break;
+    }
   }
   
   public function getProvider(): Provider
