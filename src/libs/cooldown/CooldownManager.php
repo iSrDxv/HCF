@@ -11,7 +11,7 @@ class CooldownManager
   /** @var Cooldown[] */
   protected array $cooldowns = [];
   
-  public function set(string $cooldownName, int $duration, Closure $inCooldown, Closure $noCooldown): void
+  public function set(string $cooldownName, int $duration, Closure $inCooldown, ?Closure $noCooldown = null): void
   {
     if (isset($this->cooldowns[$cooldownName])) {
       return;

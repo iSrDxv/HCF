@@ -16,13 +16,15 @@ class Cooldown
   
   protected Closure $noCooldown;
   
-  public function __construct(CooldownManager $manager, string $name, int $duration, Closure $inCooldown, Closure $noCooldown)
+  public function __construct(CooldownManager $manager, string $name, int $duration, Closure $inCooldown, ?Closure $noCooldown)
   {
     $this->manager = $manager;
     $this->name = $name;
     $this->duration = $duration;
     $this->inCooldown = $inCooldown;
-    $this->noCooldown = $noCooldown;
+    if ($noCooldown !== null) {
+      $this->noCooldown = $noCooldown;
+    }
   }
   
   public function getName(): string
@@ -43,7 +45,9 @@ class Cooldown
   
   public function onClose(): void
   {
-    ($this->noCooldown);
+    if ($this->noCooldown !== null) {
+      ($this->noCooldown);
+    }
     $this->manager->delete($this->name);
   }
   
