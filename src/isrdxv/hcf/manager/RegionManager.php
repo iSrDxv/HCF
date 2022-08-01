@@ -1,13 +1,13 @@
 <?php
 
-namespace hcf\manager;
+namespace isrdxv\hcf\manager;
 
 use const JSON_PRETTY_PRINT;
 use const JSON_BIGINT_AS_STRING;
 use const JSON_THROW_ON_ERROR;
 
-use hcf\Loader;
-use hcf\region\{
+use isrdxv\hcf\HCFLoader;
+use isrdxv\hcf\region\{
   Region,
   utils\RegionData,
   utils\RegionPosition
@@ -18,7 +18,7 @@ use pocketmine\utils\Filesystem;
 
 class RegionManager
 {
-  private Loader $loader;
+  private HCFLoader $loader;
   
   /** @var Region[] **/
   private array $regions = [];
@@ -26,7 +26,7 @@ class RegionManager
   /** @var RegionCreator[] **/
   private array $creators = [];
   
-  public function __construct(Loader $loader)
+  public function __construct(HCFLoader $loader)
   {
     $this->loader = $loader;
     foreach(glob($loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . "*.json") as $file) {

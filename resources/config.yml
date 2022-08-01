@@ -6,6 +6,9 @@ server-description: "A simple hcf core, i think"
 server-motd: "MyServer - HCF"
 # This is necessary, we cannot guarantee that your server will support a thousand simultaneous players, add limits to your ideas man
 server-slots: 100
+# IP de su servidor
+server-address: "server.com"
+
 # Faction custom data
 faction:
  max-allies: 0
@@ -21,6 +24,6 @@ provider:
     port: 3306
     username: "root"
     pass: ""
-    schema: "HCF"
+    dbname: "HCF"
  data:
   name: json

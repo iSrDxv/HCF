@@ -1,6 +1,6 @@
 <?php
 
-namespace hcf\region\utils;
+namespace isrdxv\hcf\region\utils;
 
 use pocketmine\math\Vector3;
 

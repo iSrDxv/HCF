@@ -16,9 +16,15 @@
 
 namespace isrdxv\hcf;
 
+use PDO;
+
 use isrdxv\hcf\provider\{
   Provider,
-  ProviderDB
+  ProviderDB,
+  MySQLProvider,
+  SQLite3Provider,
+  JsonProvider,
+  YamlProvider
 };
 
 use pocketmine\plugin\PluginBase;
@@ -32,18 +38,28 @@ class HCFLoader extends PluginBase
   
   private ProviderDB $providerDB;
   
+  private RegionManager $regionManager;
+  
   public ?string $data_extension = null;
   
   public function onLoad(): void
   {
     self::setInstance($this);
     $this->saveDefaultConfig();
+    if (!is_dir($this->getDataFolder() . "languages")) {
+      @mkdir($this->getDataFolder() . "languages");
+    }
+    if (!is_dir($this->getDataFolder() . "regions")) {
+      @mkdir($this->getDataFolder() . "regions");
+    }
     switch($this->getConfig()->get("provider")["database"]["name"]){
       case "sqlite3":
-        $this->providerDB;
+        $sqlite = $this->getConfig()->get("provider")["database"]["sqlite3"]["file_name"];
+        $this->providerDB = new SQLite3Provider(new PDO("sqlite3"));
       break;
       case "mysql":
-        $this->providerDB;
+        $sql = $this->getConfig()->get("provider")["database"]["mysql"];
+        $this->providerDB = new MySQLProvider(new PDO("mysql:host={$sql["address"]};port={$sql["port"]};dbname={$sql["dbname"]};charset=UTF8", $sql["username"], $sql["pass"]));
       break;
       default:
         $this->getServer()->getPluginManager()->disablePlugin($this);
@@ -52,16 +68,23 @@ class HCFLoader extends PluginBase
     switch($this->getConfig()->get("provider")["data"]["name"]){
       case "yaml":
         $this->data_extension = "yml";
-        $this->provider;
+        $this->provider = new YamlProvider();
       break;
       case "json":
         $this->data_extension = "json";
-        $this->provider;
+        $this->provider = new JsonProvider();
       break;
       default:
         $this->getServer()->getPluginManager()->disablePlugin($this);
       break;
     }
+  }
+  
+  public function onEnable(): void
+  {
+    $this->regionManager = new RegionManager($this);
+    $this->getServer()->getPluginManager()->registerEvents(new HCFListener(), $this);
+    //$this->getServer()->getPluginManager()->registerEvents(new RegionListener(), $this);
   }
   
   public function getProvider(): Provider
@@ -72,6 +95,11 @@ class HCFLoader extends PluginBase
   public function getProviderDB(): ProviderDB
   {
     return $this->providerDB;
+  }
+  
+  public function getRegionManager(): RegionManager
+  {
+    return $this->regionManager;
   }
   
 }

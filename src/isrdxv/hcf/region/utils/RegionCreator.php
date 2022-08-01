@@ -1,8 +1,8 @@
 <?php
 
-namespace hcf\region\utils;
+namespace isrdxv\hcf\region\utils;
 
-use hcf\region\utils\RegionData;
+use isrdxv\hcf\region\utils\RegionData;
 
 class RegionCreator
 {

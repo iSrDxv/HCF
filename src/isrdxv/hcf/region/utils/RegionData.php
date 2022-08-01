@@ -1,10 +1,10 @@
 <?php
 
-namespace hcf\region\utils;
+namespace isrdxv\hcf\region\utils;
 
 use pocketmine\world\World;
 
-use hcf\region\utils\RegionPosition;
+use isrdxv\hcf\region\utils\RegionPosition;
 
 class RegionData
 {

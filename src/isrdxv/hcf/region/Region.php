@@ -1,12 +1,12 @@
 <?php
 
-namespace hcf\region;
+namespace isrdxv\hcf\region;
 
 use pocketmine\world\{
   World,
   Position
 };
-use hcf\region\utils\RegionPosition;
+use isrdxv\hcf\region\utils\RegionPosition;
 
 class Region implements \jsonSerializable
 {
