@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace isrdxv\hcf\manager;
 
 use isrdxv\hcf\HCFLoader;
+
 use pocketmine\Server;
 use pocketmine\scheduler\{
   Task,
