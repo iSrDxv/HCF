@@ -26,6 +26,7 @@ use isrdxv\hcf\provider\{
   JsonProvider,
   YamlProvider
 };
+use isrdxv\hcf\manager\TaskManager;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\SingletonTrait;
@@ -82,6 +83,7 @@ class HCFLoader extends PluginBase
   
   public function onEnable(): void
   {
+    new TaskManager($this);
     $this->regionManager = new RegionManager($this);
     $this->getServer()->getPluginManager()->registerEvents(new HCFListener(), $this);
     //$this->getServer()->getPluginManager()->registerEvents(new RegionListener(), $this);
