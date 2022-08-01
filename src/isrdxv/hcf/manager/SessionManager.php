@@ -25,6 +25,13 @@ class SessionManager
     return $this->sessions[$username] ?? null;
   }
   
+  public function delete(string $username): void
+  {
+    if (isset($this->sessions[$username])) {
+      unset($this->sessions[$username]);
+    }
+  }
+  
   public function getAll(): array
   {
     return $this->sessions;

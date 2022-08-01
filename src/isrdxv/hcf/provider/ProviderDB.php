@@ -3,14 +3,14 @@
 namespace isrdxv\hcf\provider;
 
 /**
- * Dependiendo de la base de datos que selecciones, cambiara su funcionamiento
+ * Depending on the database you select, its operation will change
  */
 interface ProviderDB
 {
   public function __construct(PDO $pdo);
   
   /**
-   * Esto se utiliza, cuando quieres cambiar de base de datos
+   * This is used, when you want to change database
    */
   public function set(PDO $pdo): bool;
   
@@ -19,6 +19,6 @@ interface ProviderDB
    */
   public function get(): PDO;
   
-  //pensare si agregar una funcion como la de `exists()` del provder de datos
-  // haci optimizo el proceso.
+  //I'll think about adding a function like `exists()` from the data provider
+  //I have optimized the process.
 }

@@ -3,24 +3,24 @@
 namespace isrdxv\hcf\provider;
 
 /**
- * Dependiendo de la extension que eligas en config.yml, esto cambiará a la extensión dada
+ * Depending on the extension you choose in config.yml, this will change to the given extension
  */
 interface Provider
 {
   
   /**
-   * Agrega una clave y un dato al archivo solicitado
+   * Add a key and data to the requested file
    * @param strint|int $key 
    * 
    * @example
    * set("crates/coomon.json", "name", "Coomon")
-   * Nose por que acepto int, sera para adelantarme a un error futuro?
+   * I don't know why I accept int, would it be to anticipate a future error?
    * set("crates/coomon.json", 0, ["id" => "245:0"])
    */
   public function set(string $archive, string|int $key, mixed $data): bool;
   
   /**
-   * Agrega los elementos con el archivo dado
+   * Add the elements with the given file
    * @param array<mixed> $values
    * 
    * @example
@@ -29,19 +29,19 @@ interface Provider
   public function setAll(string $archive, array $values): bool;
   
   /**
-   * Obten solo un dato de la clave solicitada dentro del archivo solicitado
+   * Get only a data of the requested key inside the requested file
    * 
    * @return mixed
    * 
    * @example
    * get("data/srclauyt.json", "money")
-   * Nose por que acepto int, sera para adelantarme a un error futuro?
+   * I don't know why I accept int, would it be to anticipate a future error?
    * get("data/srclauyt.json", 0)
    */
   public function get(string $archive, string|int $key): mixed;
   
   /**
-   * Obtiene todos los datos de un archivo
+   * Get all data from a file
    * 
    * @return array<mixed>
    * 
@@ -51,7 +51,7 @@ interface Provider
   public function getAll(string $archive): array;
   
   /**
-   * Verifica si la clave dada es existe en el archivo
+   * Check if the given key is exists in the file
    * @return bool
    * 
    * @example
