@@ -13,6 +13,7 @@
 namespace libs\scoreboard;
 
 use isrdxv\hcf\HCFLoader;
+use isrdxv\hcf\manager\TaskManager;
 
 use pocketmine\player\Player;
 use pocketmine\network\mcpe\protocol\ {
@@ -62,6 +63,7 @@ class Scoreboard
   public function init()
   {
     $this->spawn();
+    TaskManager::getInstance()->set(new ScoreboardTask($this), 20);
   }
   
   /**

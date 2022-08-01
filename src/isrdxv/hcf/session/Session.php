@@ -13,11 +13,17 @@ class Session
   
   private ?CooldownManager $cooldown = null;
   
+  private ?Scoreboard $scoreboard;
+  
   public function __construct(string $username)
   {
     $this->username = $username;
     if (empty($this->cooldown)) {
       $this->cooldown = new CooldownManager();
+    }
+    if (empty($this->scoreboard)) {
+      $this->scoreboard = new Scoreboard ($this->getPlayer());
+      $this->scoreboard->title = "test";
     }
   }
   
@@ -29,6 +35,11 @@ class Session
   public function getCooldown(): CooldownManager
   {
     return $this->cooldown;
+  }
+  
+  public function getScoreboard(): ?Scoreboard
+  {
+    return $this->scoreboard ?? null;
   }
   
 }
