@@ -9,10 +9,14 @@ server-slots: 100
 # IP de su servidor
 server-address: "server.com"
 
+# Border
+map-border: 2000
+
 # Faction custom data
 faction:
  max-allies: 0
  max-players: 1
+ 
 # Provider
 provider:
  database:
