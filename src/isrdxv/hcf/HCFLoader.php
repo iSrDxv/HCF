@@ -53,6 +53,9 @@ class HCFLoader extends PluginBase
     if (!is_dir($this->getDataFolder() . "regions")) {
       @mkdir($this->getDataFolder() . "regions");
     }
+    foreach([$this->getDataFolder() . "languages/en_CA.ini", $this->getDataFolder() . "languages/en_US.ini", $this->getDataFolder() . "languages/es_ES.ini"] as $language) {
+      $this->saveResource($language, false);
+    }
     switch($this->getConfig()->get("provider")["database"]["name"]){
       case "sqlite3":
         $sqlite = $this->getConfig()->get("provider")["database"]["sqlite3"]["file-name"];
