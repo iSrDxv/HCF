@@ -7,9 +7,9 @@
 # /**     /** //****** /**             //******  //*******  /**   //**/********
 # //      //   //////  //               //////    ///////   //     // //////// 
 name: HCF
+prefix: "HCF-Core"
 load: "STARTUP"
 api: 4.0.0
 main: isrdxv\hcf\HCFLoader
 version: 0.0.0
 author: iSrDxv
-src-namespace-prefix: isrdxv\hcf

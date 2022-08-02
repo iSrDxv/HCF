@@ -55,7 +55,7 @@ class HCFLoader extends PluginBase
     }
     switch($this->getConfig()->get("provider")["database"]["name"]){
       case "sqlite3":
-        $sqlite = $this->getConfig()->get("provider")["database"]["sqlite3"]["file_name"];
+        $sqlite = $this->getConfig()->get("provider")["database"]["sqlite3"]["file-name"];
         $this->providerDB = new SQLite3Provider(new PDO("sqlite3"));
       break;
       case "mysql":
