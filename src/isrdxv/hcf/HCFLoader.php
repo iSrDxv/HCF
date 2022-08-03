@@ -28,6 +28,8 @@ use isrdxv\hcf\provider\{
 };
 use isrdxv\hcf\manager\TaskManager;
 
+use muqsit\invmenu\InvMenuHandler;
+
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\SingletonTrait;
 
@@ -86,6 +88,9 @@ class HCFLoader extends PluginBase
   
   public function onEnable(): void
   {
+    if (!InvMenuHandler::isRegistered()) {
+      InvMenuHandler::register($this);
+    }
     new TaskManager($this);
     $this->regionManager = new RegionManager($this);
     $this->getServer()->getPluginManager()->registerEvents(new HCFListener(), $this);
