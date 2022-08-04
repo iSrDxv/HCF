@@ -6,17 +6,12 @@ use isrdxv\hcf\crate\Crate;
 
 use muqsit\invmenu\InvMenu;
 
-use pocketmine\block\{
-  Chest,
-  BlockLegacyIds,
-  BlockBreakInfo,
-  BlockToolType,
-  BlockIndentifier
-};
-use pocketmine\block\tile\Chest as TileChest;
 use pocketmine\player\Player;
 use pocketmine\item\ItemFactory;
 
+/**
+ * Imaginary chest (don't believe it's real xd)
+ */
 class CrateChest
 {
   private string $blockId;
@@ -30,12 +25,16 @@ class CrateChest
   {
     $this->blockId = $blockId;
     $this->crate = $crate;
-    parent::__construct(new BlockIdentifier(BlockLegacyIds::CHEST, 0, null, TileChest::class), "CrateChest", new BlockBreakInfo(2.5, BlockToolType::AXE));
   }
   
   public function getBlockId(): array
   {
     return explode(":", $this->blockId);
+  }
+  
+  public function getItems(): array
+  {
+    return $this->items;
   }
   
   public function toShow(Player $player): void
