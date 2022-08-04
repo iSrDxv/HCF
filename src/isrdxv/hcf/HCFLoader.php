@@ -42,6 +42,8 @@ class HCFLoader extends PluginBase
   private ProviderDB $providerDB;
   
   private RegionManager $regionManager;
+
+  private CrateManager $crateManager;
   
   public ?string $data_extension = null;
   
@@ -93,6 +95,7 @@ class HCFLoader extends PluginBase
     }
     new TaskManager($this);
     $this->regionManager = new RegionManager($this);
+    $this->crateManager = new CrateManager($this);
     $this->getServer()->getPluginManager()->registerEvents(new HCFListener(), $this);
     //$this->getServer()->getPluginManager()->registerEvents(new RegionListener(), $this);
   }
@@ -110,6 +113,11 @@ class HCFLoader extends PluginBase
   public function getRegionManager(): RegionManager
   {
     return $this->regionManager;
+  }
+  
+  public function getCrateManager(): CrateManager
+  {
+    return $this->crateManager;
   }
   
 }

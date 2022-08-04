@@ -42,7 +42,7 @@ class CrateChest
   {
     $menu = InvMenu::create(InvMenu::TYPE_CHEST);
     $menu->setName($this->crate->getName());
-    for($i = count($this->items) - 1; $i <= 52; $i++) {
+    for($i = count($this->items) - 1; $i <= 26; $i++) {
       if (empty($this->items[$i])) {
         $this->items[$i] = ItemFactory::getInstance()->air();
       }

@@ -3,6 +3,7 @@
 namespace isrdxv\hcf\manager;
 
 use isrdxv\hcf\HCFLoader;
+use isrdxv\hcf\crate\Crate;
 
 use pocketmine\item\Item;
 
@@ -18,8 +19,39 @@ class CrateManager
       }
       $extension = $loader->data_extension;
       $content = $loader->getProvider()->getAll($file);
-      $this->setCrate(basename($file, "." . $extension), $content);
+      $this->set(basename($file, "." . $extension), $content);
     }
+  }
+  
+  public function create(array $crateData): bool
+  {
+    if ($this->exists($crateData["name"])) {
+      return;
+    }
+    $this->crates[$crateData["name"]] = new Crate();
+  }
+  
+  public function set(string $name, array $data): void
+  {
+    if ($this->exists($name)) {
+      return;
+    }
+    $this->crates[$name] = $data;
+  }
+  
+  public function get(string $name): ?Crate
+  {
+    return $this->crates[$name] ?? null;
+  }
+  
+  public function getAll(): array
+  {
+    return $this->crates;
+  }
+  
+  public function exists(string $name): bool
+  {
+    return isset($this->crates[$name]) ? true : false;
   }
   
 }
