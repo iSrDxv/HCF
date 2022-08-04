@@ -26,7 +26,11 @@ use isrdxv\hcf\provider\{
   JsonProvider,
   YamlProvider
 };
-use isrdxv\hcf\manager\TaskManager;
+use isrdxv\hcf\manager\{
+  TaskManager,
+  RegionManager,
+  CrateManager
+};
 
 use muqsit\invmenu\InvMenuHandler;
 
