@@ -21,7 +21,7 @@ class TagEditor
 	
 	const ONE_BREAK_LINE = 0.32;
 
-  public function __construct(Entity $entity)
+  public function __construct($entity)
   {
     $this->entity = $entity;
   }

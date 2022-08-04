@@ -16,15 +16,13 @@ class CrateChest
 {
   private string $blockId;
   
-  private Crate $crate;
-  
   /** @var Item[] **/
   private array $items = [];
   
-  public function __construct(string $blockId, Crate $crate)
+  public function __construct(string $blockId, array $items)
   {
     $this->blockId = $blockId;
-    $this->crate = $crate;
+    $this->items = $items;
   }
   
   public function getBlockId(): array

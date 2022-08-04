@@ -25,6 +25,7 @@ use pocketmine\entity\{
 };
 use pocketmine\world\Position;
 use pocketmine\player\Player;
+use pocketmine\Server;
 
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -158,9 +159,24 @@ class Entity
     }
   }
   
-  public function fromEntity(): ?Entity
+  public function fromEntity(): Entity
   {
-    return $this->position !== null ? $this->position->getWorld()->getEntity($this->entityId) : null;
+    return $this->position !== null ? $this->position->getWorld()->getEntity($this->entityId) : Server::getInstance()->getWorldManager()->getDefaultWorld()->getEntity($this->entityId);
+  }
+  
+  public function toArray(): array
+  {
+    $tags = [];
+    foreach($this->tagEditor->getLines() as $line) {
+      $tags[] = $line->getNameTag();
+    }
+    return [
+      "nametag" => $tags,
+      "x" => $this->position->getX(),
+      "y" => $this->position->getY(),
+      "z" => $this->position->getZ(),
+      "world" => $this->position !== null ? $this->position->getWorld()->getFolderName() : Server::getInstance()->getDefaultWorld()->getFolderName()
+    ];
   }
   
 }

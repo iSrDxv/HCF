@@ -25,7 +25,7 @@ class Tag
 {
 
   private $entity;
-  private string $nameTag;
+  private string $nameTag = "";
   private int $entityId;
 
   private Position $position;
