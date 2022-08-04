@@ -47,7 +47,9 @@ class CrateChest
         $this->items[$i] = ItemFactory::getInstance()->air();
       }
     }
-    $menu->setContents($this->items);
+    foreach($this->items as $item) {
+      $menu->getInventory()->addItem($this->items);
+    }
     $menu->setListener(InvMenu::readonly());
     $menu->send($player);
   }
