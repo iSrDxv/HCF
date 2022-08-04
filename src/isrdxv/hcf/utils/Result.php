@@ -39,4 +39,13 @@ class Result
     return $items;
   }
   
+  public static function decodeItemsContent(array $content): array
+  {
+    $content = [];
+    foreach($content as $data) {
+      $content[] = Item::jsonDeserealize($data);
+    }
+    return $content;
+  }
+  
 }

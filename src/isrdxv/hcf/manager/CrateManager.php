@@ -4,6 +4,7 @@ namespace isrdxv\hcf\manager;
 
 use isrdxv\hcf\HCFLoader;
 use isrdxv\hcf\crate\Crate;
+use isrdxv\hcf\utils\Result;
 
 use pocketmine\item\Item;
 
@@ -28,6 +29,7 @@ class CrateManager
     if ($this->exists($crateData["name"])) {
       return;
     }
+    //save file
     $this->crates[$crateData["name"]] = new Crate();
   }
   
@@ -36,7 +38,7 @@ class CrateManager
     if ($this->exists($name)) {
       return;
     }
-    $this->crates[$name] = $data;
+    $this->crates[$name] = new Crate($data["name"], $data["customName"], $data["blockId"], Result::decodeItemsContent($data["items"]));
   }
   
   public function get(string $name): ?Crate

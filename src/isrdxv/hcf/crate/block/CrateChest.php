@@ -47,7 +47,7 @@ class CrateChest
       }
     }
     foreach($this->items as $item) {
-      $menu->getInventory()->addItem($this->items);
+      $menu->getInventory()->addItem($item);
     }
     $menu->setListener(InvMenu::readonly());
     $menu->send($player);
