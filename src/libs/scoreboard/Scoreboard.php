@@ -35,11 +35,9 @@ class Scoreboard
   }
 
   /** @var Player **/
-  public Player $player;
+  private Player $player;
 
   public string $title;
-
-  private $taskUpdater;
 
   /** @var ScorePacketEntry[] **/
   public array $lines = [];

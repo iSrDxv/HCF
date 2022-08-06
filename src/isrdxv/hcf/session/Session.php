@@ -2,10 +2,13 @@
 
 namespace isrdxv\hcf\session;
 
+use isrdxv\hcf\HCFLoader;
+
 use pocketmine\player\Player;
 use pocketmine\Server;
 
 use libs\cooldown\CooldownManager;
+use libs\scoreboard\Scoreboard;
 
 class Session
 {
@@ -22,8 +25,7 @@ class Session
       $this->cooldown = new CooldownManager();
     }
     if (empty($this->scoreboard)) {
-      $this->scoreboard = new Scoreboard ($this->getPlayer());
-      $this->scoreboard->title = "test";
+      $this->scoreboard = Scoreboard ::create($this->getPlayer(), HCFLoader::getInstance()->getConfig()->get("server-name"));
     }
   }
   

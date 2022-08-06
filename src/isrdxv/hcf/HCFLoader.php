@@ -34,6 +34,8 @@ use isrdxv\hcf\manager\{
 
 use muqsit\invmenu\InvMenuHandler;
 
+use libs\cache\CacheManager;
+
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\SingletonTrait;
 
@@ -98,6 +100,7 @@ class HCFLoader extends PluginBase
       InvMenuHandler::register($this);
     }
     new TaskManager($this);
+    new CacheManager();
     $this->regionManager = new RegionManager($this);
     $this->crateManager = new CrateManager($this);
     $this->getServer()->getPluginManager()->registerEvents(new HCFListener(), $this);
