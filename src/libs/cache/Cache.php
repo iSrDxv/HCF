@@ -35,7 +35,7 @@ class Cache
   
   public function exists(string $key = null): bool
   {
-    return is_bool($this->data) || is_numeric($this->data) || is_float($this->data) || is_string($this->data) ? true : false ?? $key !== null && isset($this->data[$key]) ? true : false;
+    return is_bool($this->data) || is_numeric($this->data) || is_float($this->data) || is_string($this->data) ? true : ($key !== null && isset($this->data[$key]) ? true : false); 
   }
   
   public function getData(): mixed
