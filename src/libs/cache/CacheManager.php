@@ -19,7 +19,7 @@ class CacheManager
   
   public function set(string $name, mixed $data): bool
   {
-    if (empty($key) or isset($this->caches[$key])) {
+    if (empty($name) or isset($this->caches[$name])) {
       return false;
     }
     $this->caches[$name] = new Cache($data);
