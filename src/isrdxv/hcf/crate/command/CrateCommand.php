@@ -3,6 +3,14 @@
 namespace isrdxv\hcf\crate\command;
 
 use isrdxv\hcf\command\Command;
+use isrdxv\hcf\crate\command\type\{
+  CreateSubCommand,
+  EditSubCommand,
+  DeleteSubCommand,
+  GiveKeySubCommand,
+  GiveSubCommand,
+  HelpSubCommand
+};
 
 use pocketmine\command\CommandSender;
 use pocketmine\plugin\PluginBase;
@@ -22,17 +30,14 @@ class CrateCommand extends Command
     if ($sender instanceof CommandSender) {
       continue;
     }
-    if (empty($args[0])) {
-      $subCommand = $this->getSubCommand("help");
+    if (isset($args[0])) {
+      $subCommand = $this->getSubCommand($args[0]);
       if ($subCommand !== null) {
         $subCommand->execute($sender, $label, $args);
         return;
       }
     } else {
-      $subCommand = $this->getSubCommand($args[0]);
-      if ($subCommand !== null) {
-        $subCommand->execute($sender, $label, $args);
-      }
+      $sender->sendMessage($this->getUsage());
     }
   }
   

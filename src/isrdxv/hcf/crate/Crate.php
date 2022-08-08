@@ -24,10 +24,10 @@ class Crate
 
   private FloatingText $floatingText;
   
-  public function __construct(string $name, string $customName, array $tags, string $blockId, array $position, array $items, string $keyName, array $keyLore)
+  public function __construct(string $name, string $customName, array $tags, string $blockId, array $position, array $items, string $keyName, array $keyLore = [])
   {
     if (empty($name)) {
-      //code
+      throw new \RuntimeException("El nombre esta vacio :(");
     }
     $this->name = $name;
     $this->customName = $customName;
@@ -59,12 +59,13 @@ class Crate
     return $this->floatingText;
   }
   
-  public function getCrateKey(): Key
+  public function getCrateKey(int $count = 1): Key
   {
     if ($this->keyName === null || $this->keyLore === null) {
       return;
     }
-    $key = new Key(new ItemIdentifier(54, 0), $this->name);
+    $key = new Key(new ItemIdentifier(131, 0), $this->name);
+    $key->setCount($count);
     $key->setCustomName($this->keyName);
     $key->setLore($this->keyLore);
     $key->setCrateName($this->name);
