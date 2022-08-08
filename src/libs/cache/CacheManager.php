@@ -4,18 +4,14 @@ namespace libs\cache;
 
 use libs\cache\Cache;
 
-use pocketmine\utils\SingletonTrait;
-
 class CacheManager
 {
-  use SingletonTrait;
-  
   private array $caches = [];
   
-  public function __construct()
+  /*public function __construct()
   {
     self::setInstance($this);
-  }
+  }*/
   
   public function set(string $name, mixed $data): bool
   {

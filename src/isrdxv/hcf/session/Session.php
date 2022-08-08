@@ -9,14 +9,17 @@ use pocketmine\Server;
 
 use libs\cooldown\CooldownManager;
 use libs\scoreboard\Scoreboard;
+use libs\cache\CacheManager;
 
 class Session
 {
   private string $username;
   
-  private ?CooldownManager $cooldown = null;
+  private CooldownManager $cooldown;
   
-  private ?Scoreboard $scoreboard;
+  private Scoreboard $scoreboard;
+  
+  private CacheManager $cache;
   
   public function __construct(string $username)
   {
@@ -26,6 +29,9 @@ class Session
     }
     if (empty($this->scoreboard)) {
       $this->scoreboard = Scoreboard ::create($this->getPlayer(), HCFLoader::getInstance()->getConfig()->get("server-name"));
+    }
+    if (empty($this->cache)) {
+      $this->cache = new CacheManager();
     }
   }
   
@@ -41,7 +47,12 @@ class Session
   
   public function getScoreboard(): ?Scoreboard
   {
-    return $this->scoreboard ?? null;
+    return $this->scoreboard;
+  }
+  
+  public function getCache(): CacheManager
+  {
+    return $this->cache;
   }
   
 }
