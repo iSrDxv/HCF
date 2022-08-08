@@ -70,6 +70,9 @@ class HCFLoader extends PluginBase
         $this->providerDB = new SQLite3Provider(new PDO("sqlite:" . $this->getDataFolder() . DIRECTORY_SEPARATOR . $sqlite));
       break;
       case "mysql":
+        if (file_exists($this->getDataFolder() . $this->getConfig()->get("provider")["database"]["sqlite3"]["file-name"])) {
+          //unlink($this->getDataFolder() . $this->getConfig()->get("provider")["database"]["sqlite3"]["file-name"]);
+        }
         $sql = $this->getConfig()->get("provider")["database"]["mysql"];
         $this->providerDB = new MySQLProvider(new PDO("mysql:host={$sql["address"]};port={$sql["port"]};dbname={$sql["dbname"]};charset=UTF8", $sql["username"], $sql["pass"]));
       break;
