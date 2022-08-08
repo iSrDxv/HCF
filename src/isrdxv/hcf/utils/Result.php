@@ -8,15 +8,15 @@ use pocketmine\item\Item;
 class Result
 {
   
-  public function encodeItem(Item $item): array
+  public static function encodeItem(Item $item): array
   {
     return $item->jsonSerialize();
   }
   
-  public function encodeItems(array $contents): array
+  public static function encodeItems(array $contents): array
   {
     if (empty($contents)) {
-      return;
+      return [];
     }
     $data = [];
     foreach($contents as $slot => $item) {
@@ -25,13 +25,16 @@ class Result
     return $data;
   }
   
-  public function decodeItem(array $data): Item
+  public static function decodeItem(array $data): Item
   {
     return Item::jsonDeserealize($data);
   }
   
-  public function decodeItems(array $contents): array
+  public static function decodeItems(array $contents): array
   {
+    if (empty($contents)) {
+      return [];
+    }
     $items = [];
     foreach($contents as $slot => $data) {
       $items[$slot] = Item::jsonDeserealize($data);
@@ -39,11 +42,20 @@ class Result
     return $items;
   }
   
-  public static function decodeItemsContent(array $content): array
+  public static function encodeInventoryContent(array $content): array
   {
-    $content = [];
+    $items = [];
+    foreach($content as $item) {
+      $items[] = $item->jsonSerialize();
+    }
+    return $items;
+  }
+  
+  public static function decodeInventoryContent(array $content): array
+  {
+    $items = [];
     foreach($content as $data) {
-      $content[] = Item::jsonDeserealize($data);
+      $items[] = Item::jsonDeserealize($data);
     }
     return $content;
   }

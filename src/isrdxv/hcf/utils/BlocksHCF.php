@@ -12,7 +12,7 @@ use pocketmine\math\Vector3;
 class BlocksHCF
 {
   /**
-   * createTower($player, $blockId, $block->getPosition());
+   * createTower($player, $block->getId(), $block->getPosition());
    */
   public function createTower(Player $player, int $blockId, Position $position): void
   {
