@@ -6,6 +6,8 @@ use libs\cooldown\Cooldown;
 
 use Closure;
 
+use pocketmine\utils\Utils;
+
 class CooldownManager
 {
   /** @var Cooldown[] */
@@ -16,6 +18,8 @@ class CooldownManager
     if (isset($this->cooldowns[$cooldownName])) {
       return;
     }
+    Utils::validateCallableSignature(function(int $duration): void {}, $inCooldown);
+    //Utils::validateCallableSignature(function(): void {}, $noCooldown);
     $this->cooldowns[$cooldownName] = new Cooldown($this, $cooldownName, $duration, $inCooldown, $noCooldown);
   }
   
