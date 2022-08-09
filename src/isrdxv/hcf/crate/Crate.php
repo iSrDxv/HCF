@@ -65,11 +65,7 @@ class Crate
       return;
     }
     $key = new Key(new ItemIdentifier(131, 0), $this->name);
-    $key->setCount($count);
-    $key->setCustomName($this->keyName);
-    $key->setLore($this->keyLore);
-    $key->setCrateName($this->name);
-    return $key;
+    return $key->setCount($count)->setCustomName($this->keyName)->setLore($this->keyLore)->setCrateName($this->name);
   }
   
   public function spawn(): bool

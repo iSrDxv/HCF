@@ -49,8 +49,6 @@ class HCFLoader extends PluginBase
 
   private CrateManager $crateManager;
   
-  public ?string $data_extension = null;
-  
   public function onLoad(): void
   {
     self::setInstance($this);
@@ -82,12 +80,10 @@ class HCFLoader extends PluginBase
     }
     switch($this->getConfig()->get("provider")["data"]["name"]){
       case "yaml":
-        $this->data_extension = "yml";
-        $this->provider = new YamlProvider();
+        $this->provider = new YamlProvider($this);
       break;
       case "json":
-        $this->data_extension = "json";
-        $this->provider = new JsonProvider();
+        $this->provider = new JsonProvider($this);
       break;
       default:
         $this->getServer()->getPluginManager()->disablePlugin($this);

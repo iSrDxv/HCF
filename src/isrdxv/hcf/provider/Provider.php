@@ -8,6 +8,8 @@ namespace isrdxv\hcf\provider;
 interface Provider
 {
   
+  public function __construct(HCFLoader $loader);
+  
   /**
    * Add a key and data to the requested file
    * @param strint|int $key 
@@ -17,7 +19,7 @@ interface Provider
    * I don't know why I accept int, would it be to anticipate a future error?
    * set("crates/coomon.json", 0, ["id" => "245:0"])
    */
-  public function set(string $archive, string|int $key, mixed $data): bool;
+  public function set(string $archive, string|int $key, mixed $value): void;
   
   /**
    * Add the elements with the given file
@@ -26,7 +28,7 @@ interface Provider
    * @example
    * setAll("example/archive.json", ["string" => "a", 0 => "cero", "bool" => true]);
    */
-  public function setAll(string $archive, array $values): bool;
+  public function setAll(string $archive, array $values): void;
   
   /**
    * Get only a data of the requested key inside the requested file
