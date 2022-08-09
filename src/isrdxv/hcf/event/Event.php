@@ -5,8 +5,9 @@ namespace isrdxv\hcf\event;
 class Event
 {
   
-  public function __construct(string $name, bool $enabled = false, int $time);
+  public function __construct(string $name, int $time);
   
+  //default false
   public function isEnabled(): bool;
   
   public function getName(): string;
