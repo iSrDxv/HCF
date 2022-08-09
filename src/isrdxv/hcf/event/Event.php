@@ -10,6 +10,8 @@ class Event
   //default false
   public function isEnabled(): bool;
   
+  public function setEnable(bool $value = true): void;
+  
   public function getName(): string;
   
   public function getTime(): int;
