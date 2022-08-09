@@ -18,6 +18,7 @@ namespace isrdxv\hcf;
 
 use PDO;
 
+use isrdxv\hcf\HCF;
 use isrdxv\hcf\provider\{
   Provider,
   ProviderDB,
@@ -35,7 +36,10 @@ use isrdxv\hcf\manager\{
 use muqsit\invmenu\InvMenuHandler;
 
 use pocketmine\plugin\PluginBase;
-use pocketmine\utils\SingletonTrait;
+use pocketmine\utils\{
+  TextFormat,
+  SingletonTrait
+};
 
 class HCFLoader extends PluginBase
 {
@@ -51,6 +55,14 @@ class HCFLoader extends PluginBase
   
   public function onLoad(): void
   {
+    if ($this->getDescription()->getVersion() !== HCF::VERSION()) {
+        $this->getServer()->getPluginManager()->disablePlugin($this);
+    }
+    if (HCF::IS_IN_DEVELOPMENT) {
+      $prefix = str_replace("%type%", "DEVELOPMENT", HCF::PREFIX);
+      $this->getLogger()->warning(TextFormat::RED . $prefix . " We recommend you not to use this version, since it is under development");
+      $this->getLogger()->warning($prefix . "These types of versions are very prone to fatal errors.");
+    }
     self::setInstance($this);
     $this->saveDefaultConfig();
     if (!is_dir($this->getDataFolder() . "languages")) {

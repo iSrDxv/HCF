@@ -22,6 +22,7 @@ class CrateCommand extends Command
   public function __construct()
   {
     parent::__construct("crate", "Crate Commands", "/crate help");
+    parent::setPermission("crate.command");
     $this->addSubCommand(new HelpSubCommand());
   }
   

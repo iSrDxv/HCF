@@ -6,10 +6,17 @@
 # /**     /**//**    **/**            //**    **//**     ** /**  //** /**      
 # /**     /** //****** /**             //******  //*******  /**   //**/********
 # //      //   //////  //               //////    ///////   //     // //////// 
-name: HCF
+name: HCF-isrdxv
 prefix: "HCF-Core"
 load: "STARTUP"
 api: 4.0.0
 main: isrdxv\hcf\HCFLoader
-version: 0.0.0
+version: 1.0.0+dev1
 author: iSrDxv
+website: https://github.com/iSrDxv/HCF
+
+permissions:
+  hcf.bypass:
+    default: op
+  crate.command:
+    default: op
