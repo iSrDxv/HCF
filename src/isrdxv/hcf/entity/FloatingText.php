@@ -35,6 +35,9 @@ class FloatingText extends Entity
   
   public function setScale(float $scale = 0.50): void
   {
+    if (is_int($scale)) {
+      return;
+    }
     parent::setScale($scale);
   }
   
@@ -50,6 +53,9 @@ class FloatingText extends Entity
   
   public function setPosition(Position $position): void
   {
+    if (!$position instanceof Position) {
+      return;
+    }
     parent::setPosition($position);
   }
   

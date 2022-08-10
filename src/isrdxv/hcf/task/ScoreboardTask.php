@@ -21,7 +21,7 @@ class ScoreboardTask extends Task
     $session = SessionManager::getInstance()->get($player->getName());
     $cooldown = $session->getCooldown();
     $lines = [];
-    if (($antiTrapper = $cooldown->get("Anti-trapper")) !== null) {
+    if (($antiTrapper = $cooldown->get("anti-trapper")) !== null) {
       $lines[] = "§bAnti Trapper: " . $antiTrapper->getDuration();
     }
     if (($combatTag = $cooldown->get("combat-tag")) !== null) {

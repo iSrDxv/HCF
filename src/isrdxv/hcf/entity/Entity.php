@@ -150,15 +150,6 @@ class Entity
     }
   }
   
-  public function executeEmote(string $emoteId, bool $noStop = false, int $second): void
-  {
-    if ($noStop === false) {
-      HCFLoader::getInstance()->scheduleRepeatingTask(new EmoteRepeatingTimer($emoteId, $this, $second), 20);
-    } else {
-      HCFLoader::getInstance()->scheduleRepeatingTask(new EmoteRepeating($emoteId, $this, $second), 20);
-    }
-  }
-  
   public function fromEntity(): Entity
   {
     return $this->position !== null ? $this->position->getWorld()->getEntity($this->entityId) : Server::getInstance()->getWorldManager()->getDefaultWorld()->getEntity($this->entityId);

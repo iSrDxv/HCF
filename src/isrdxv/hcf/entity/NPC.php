@@ -2,33 +2,46 @@
 
 namespace isrdxv\hcf\entity;
 
+use isrdxv\hcf\HCFLoader;
+use isrdxv\hcf\entity\Entity;
 use isrdxv\hcf\entity\utils\TagEditor;
 
-use pocketmine\entity\Human;
 use pocketmine\player\Player;
 
-class NPC extends Human
+class NPC extends Entity
 {
-  /** @var TagEditor **/
-  private $tagEditor;
-  
-  public function __construct($location, $skin, $nbt = null)
-  {
-    parent::__construct($location, $skin, $nbt);
-    $this->tagEditor = new TagEditor($this);
-  }
-  
-  public function getTagEditor(): TagEditor
-  {
-    return $this->tagEditor;
-  }
+  private array $viewers = [];
   
   public function spawnTo(Player $player): void
   {
-    $this->setImmobile();
     parent::spawnTo($player);
-    foreach($this->tagEditor->getLines() as $line) {
-      $line->spawnTo($player);
+    if (!in_array(spl_object_hash($player), $this->viewers)) {
+      $this->viewers[spl_object_hash($player)] = $player;
+    }
+  }
+  
+  public function despawnFrom(Player $player): void
+  {
+    parent::despawnFrom($player);
+    unset($this->viewers[spl_object_hash($player)]);
+  }
+  
+  public function isViewer(Player $player): bool
+  {
+    return array_key_exists(spl_object_hash($player), $this->viewers);
+  }
+  
+  public function getViewers(): array
+  {
+    return $this->viewers;
+  }
+  
+  public function executeEmote(string $emoteId, bool $noStop = false, int $second): void
+  {
+    if ($noStop === false) {
+      HCFLoader::getInstance()->scheduleRepeatingTask(new EmoteRepeatingTimer($emoteId, $this, $second), 20);
+    } else {
+      HCFLoader::getInstance()->scheduleRepeatingTask(new EmoteRepeating($emoteId, $this, $second), 20);
     }
   }
   
