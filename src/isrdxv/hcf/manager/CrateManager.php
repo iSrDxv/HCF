@@ -18,9 +18,7 @@ class CrateManager
       if (!is_file($file)) {
         return;
       }
-      $extension = $loader->data_extension;
-      $content = $loader->getProvider()->getAll($file);
-      $this->set(basename($file, $extension), $content);
+      $this->set(basename($file, $loader->getProvider()->getExtension()), $loader->getProvider()->getAll($file));
     }
   }
   

@@ -69,4 +69,9 @@ class YamlProvider implements Provider
     }
   }
   
+  public function getExtension(): string
+  {
+    return ".yml";
+  }
+  
 }

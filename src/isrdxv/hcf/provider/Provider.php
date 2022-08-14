@@ -61,4 +61,9 @@ interface Provider
    */
   public function exists(string $archive, string $key): bool;
   
+  /**
+   * get the extension
+   */
+   public function getExtension(): string;
+   
 }
