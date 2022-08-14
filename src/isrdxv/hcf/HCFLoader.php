@@ -35,6 +35,7 @@ use isrdxv\hcf\manager\{
 
 use muqsit\invmenu\InvMenuHandler;
 
+use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\{
   TextFormat,
@@ -44,8 +45,6 @@ use pocketmine\utils\{
 class HCFLoader extends PluginBase
 {
   use SingletonTrait;
-  
-  public string $data_extension;
   
   private Provider $provider;
   
@@ -114,8 +113,20 @@ class HCFLoader extends PluginBase
     new TaskManager($this);
     $this->regionManager = new RegionManager($this);
     $this->crateManager = new CrateManager($this);
-    $this->getServer()->getPluginManager()->registerEvents(new HCFListener($this), $this);
-    $this->getServer()->getPluginManager()->registerEvents(new RegionListener(), $this);
+    
+    //$this->registerCommands();
+    $this->registerListeners();
+  }
+  
+  public function registerListeners(): void
+  {
+    $this->registerListener(new HCFListener($this));
+    $this->registerListener(new RegionListener());
+  }
+  
+  private function registerListener(Listener $listener): void
+  {
+    $this->getServer()->getPluginManager()->registerEvents($listener, $this);
   }
   
   public function getProvider(): Provider
