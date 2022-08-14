@@ -9,13 +9,36 @@ use pocketmine\event\{
   Listener,
   player\PlayerQuitEvent,
   player\PlayerJoinEvent,
+  player\PlayerPreLoginEvent,
   player\PlayerLoginEvent,
   world\ChunkLoadEvent
 };
 use pocketmine\Server;
+use pocketmine\player\{
+  PlayerInfo,
+  XboxLivePlayerInfo
+};
 
 class HCFListener implements Listener
 {
+  
+  public function onPreLogin(PlayerPreLoginEvent $event): void
+  {
+    $playerInfo = $event->getPlayerInfo();
+    if (HCFLoader::getInstance()->getConfig()->get("server-maintenance")) {
+      $event->setKickReason(PlayerPreLoginEvent::KICK_REASON_PLUGIN, "§l§The server is under maintenance");
+    }
+    if ($event->isKickReasonSet(PlayerPreLoginEvent::KICK_REASON_SERVER_FULL)) {
+      if (!in_array($playerInfo->getUsername(), HCFLoader::getInstance()->getConfig()->get("server-bypass"), true)) {
+        return;
+      }
+      $event->clearKickReason(PlayerPreLoginEvent::KICK_REASON_SERVER_FULL);
+    }
+    if (empty($playerInfo->getXuid()) || !$playerInfo instanceof XboxLivePlayerInfo) {
+      $event->setKickReason(PlayerPreLoginEvent::KICK_REASON_PLUGIN, "§l§cPlease log in to Xbox Live before entering the server, thanks :)");
+      return;
+    }
+  }
   
   public function onLogin(PlayerLoginEvent $event): void
   {
@@ -55,6 +78,8 @@ class HCFListener implements Listener
     if (($event->getChunkX() >> 4) > $subtractLimitX || ($event->getChunkZ() >> 4) > $subtractLimitZ) {
       $world->unloadChunk($event->getChunkX(), $event->getChunkZ());
     }
+    var_dump($limitX);
+    var_dump($subtractLimitX);
   }
   
 }

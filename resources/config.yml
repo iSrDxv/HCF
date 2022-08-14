@@ -6,8 +6,14 @@ server-description: "A simple hcf core, i think"
 server-motd: "MyServer - HCF"
 # This is necessary, we cannot guarantee that your server will support a thousand simultaneous players, add limits to your ideas man
 server-slots: 100
-# IP de su servidor
+# IP of your server
 server-address: "server.com"
+# Put the server in maintenance
+server-maintenance: false
+# Players that will be able to enter the server if it is full
+server-bypass: 
+ - "SrClauYT"
+ - "SrClauDev8498"
 
 # Border
 map-border: 2000
