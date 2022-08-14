@@ -2,11 +2,12 @@
 
 namespace isrdxv\hcf\region;
 
+use isrdxv\hcf\region\utils\RegionPosition;
+
 use pocketmine\world\{
   World,
   Position
 };
-use isrdxv\hcf\region\utils\RegionPosition;
 
 class Region implements \jsonSerializable
 {
@@ -28,7 +29,7 @@ class Region implements \jsonSerializable
   
   public function __construct(string $name, string $custom_name = "", bool $pvp_rule = true, bool $block_rule = false, bool $hunger_rule = false, ?World $world = null)
   {
-    $this->name = $name-
+    $this->name = $name;
     $this->custom_name = $custom_name;
     $this->pvp_rule = $pvp_rule;
     $this->block_rule = $block_rule;
