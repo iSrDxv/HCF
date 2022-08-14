@@ -11,7 +11,7 @@ use pocketmine\world\Position;
 
 class TagEditor 
 {
-
+  /** @var Entity **/
   private $entity;
   
   /**
@@ -39,9 +39,7 @@ class TagEditor
 		  $position = $this->lines[count($this->lines) - 1]->getPosition()->add(0, (self::ONE_BREAK_LINE * $separator), 0);
 		}
 		$tag = new Tag($this->entity);
-	  $tag->setNameTag($nameTag);
-    $tag->setPosition(new Position($position->x, $position->y, $position->z, $this->entity->getPosition()->getWorld()));
-    $this->lines[] = $tag;
+    $this->lines[] = $tag->setNameTag($nameTag)->setPosition(new Position($position->x, $position->y, $position->z, $this->entity->getPosition()->getWorld()));
     return $this;
 	}
     

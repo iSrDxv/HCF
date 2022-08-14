@@ -26,19 +26,19 @@ class HCFListener implements Listener
   public function onJoin(PlayerJoinEvent $event): void
   {
     $player = $event->getPlayer();
+    $event->setJoinMessage("§0[§a+§0] §a{$player->getName()}");
     $session = SessionManager::getInstance()->get($player->getName());
     if ($session->getScoreboard() !== null) {
       $session->getScoreboard()->init();
     }
     $player->teleport(Server::getInstance()->getWorldManager()->getDefaultWorld()->getSafeSpawn());
-    $event->setJoinMessage("§0[§a+§0] §a{$player->getName()}");
   }
   
   public function onQuit(PlayerQuitEvent $event): void
   {
     $player = $event->getPlayer();
-    SessionManager::getInstance()->delete($player->getName());
     $event->setQuitMessage("§0[§c-§0] §c{$player->getName()}");
+    SessionManager::getInstance()->delete($player->getName());
   }
   
   public function onChunkLoad(ChunkLoadEvent $event): void

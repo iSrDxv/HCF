@@ -45,6 +45,8 @@ class HCFLoader extends PluginBase
 {
   use SingletonTrait;
   
+  public string $data_extension;
+  
   private Provider $provider;
   
   private ProviderDB $providerDB;
@@ -92,9 +94,11 @@ class HCFLoader extends PluginBase
     }
     switch($this->getConfig()->get("provider")["data"]["name"]){
       case "yaml":
+        $this->data_extension = ".yml";
         $this->provider = new YamlProvider($this);
       break;
       case "json":
+        $this->data_extension = ".json";
         $this->provider = new JsonProvider($this);
       break;
       default:

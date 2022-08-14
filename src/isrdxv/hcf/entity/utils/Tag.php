@@ -73,7 +73,7 @@ class Tag
     $metadata->setGenericFlag(EntityMetadataFlags::CAN_SHOW_NAMETAG, 1);
     $metadata->setLong(EntityMetadataProperties::LEAD_HOLDER_EID, -1);
     $metadata->setInt(EntityMetadataProperties::VARIANT, RuntimeBlockMapping::getInstance()->toRuntimeId(VanillaBlocks::AIR()->getFullId()));
-    $metadata->setFloat(EntityMetadataProperties::SCALE, 0.004);
+    $metadata->setFloat(EntityMetadataProperties::SCALE, 0.005);
     $metadata->setString(EntityMetadataProperties::NAMETAG, $this->nameTag);
     $metadata->setGenericFlag(EntityMetadataFlags::IMMOBILE, 1);
     $metadata->setFloat(EntityMetadataProperties::BOUNDING_BOX_WIDTH, 0.0);
@@ -102,10 +102,12 @@ class Tag
 
   /**
     * @param string $nameTag
+    * @return Tag
     */
   public function setNameTag(string $nameTag): void
   {
     $this->nameTag = $nameTag;
+    return $this;
   }
 
   /**
@@ -118,10 +120,12 @@ class Tag
 
   /**
     * @param Position $position
+    * @return Tag
     */
-  public function setPosition(Position $position): void
+  public function setPosition(Position $position): self
   {
     $this->position = $position;
+    return $this;
   }
     
 }

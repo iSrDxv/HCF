@@ -20,7 +20,7 @@ class CrateManager
       }
       $extension = $loader->data_extension;
       $content = $loader->getProvider()->getAll($file);
-      $this->set(basename($file, "." . $extension), $content);
+      $this->set(basename($file, $extension), $content);
     }
   }
   
