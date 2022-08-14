@@ -1,80 +1,8 @@
 <?php
 
-namespace Jacob\Orix\util;
-
-use Jacob\Orix\AdvancedPractice;
-
-use pocketmine\utils\TextFormat;
-use pocketmine\math\Vector3;
+namespace isrdxv\hcf\utils;
 
 class Time {
-
-  public const VALID_FORMATS = ["minutes", "hours", "seconds", "days"];
-
-    /**
-     * @param String $timeFormat
-     */
-    public static function intToString(string $timeFormat): string {
-        $format = str_split($timeFormat);
-        $time = null; 
-        for($i = 0; $i < count($format); $i++){
-            switch($format[$i]){
-                case "m":
-                $time = "minutes";
-                break;
-                case "h":
-                $time = "hours";
-                break;
-                case "d":
-                $time = "days";
-                break;
-                case "s":
-                $time = "seconds";
-                break;
-            }
-        }
-        return $time;
-    }
-
-    /**
-     * @param String $timeFormat
-     * @return int
-     */
-    public static function stringToInt(string $timeFormat): int {
-        $format = str_split($timeFormat);
-        $characters = "";
-        for($i = 0; $i < count($format); $i++){
-            if(is_numeric($format[$i])){
-            	$characters .= $format[$i];
-            	continue;
-            }
-        }
-        return $characters;
-    }
-
-    /**
-     * @param int $time
-     * @param string $timeFormat
-     * @return Int
-     */
-    public static function getFormatTime(int $time, string $timeFormat): int {
-        $value = null;
-        switch(self::intToString($timeFormat)){
-            case "minutes":
-            $value = time() + ($time * 60);
-            break;
-            case "hours":
-            $value = time() + ($time * 3600);
-            break;
-            case "days":
-            $value = time() + ($time * 86400);
-            break;
-            case "seconds":
-            $value = time() + ($time * 1);
-            break;
-        }
-        return $value;
-    }
     
     /**
 	 * @param string|int $time

@@ -14,7 +14,7 @@ class CrateManager
   
   public function __construct(HCFLoader $loader)
   {
-    foreach(glob($loader->getDataFolder() . "crates/*") as $file) {
+    foreach(glob($loader->getDataFolder() . "crates/*" . $loader->getProvider()->getExtension()) as $file) {
       if (!is_file($file)) {
         return;
       }

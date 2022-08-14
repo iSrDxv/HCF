@@ -21,15 +21,21 @@ use pocketmine\player\{
 
 class HCFListener implements Listener
 {
+  private HCFLoader $loader;
+  
+  public function __construct(HCFLoader $loader)
+  {
+    $this->loader = $loader;
+  }
   
   public function onPreLogin(PlayerPreLoginEvent $event): void
   {
     $playerInfo = $event->getPlayerInfo();
-    if (HCFLoader::getInstance()->getConfig()->get("server-maintenance")) {
+    if ($this->loader->getConfig()->get("server-maintenance")) {
       $event->setKickReason(PlayerPreLoginEvent::KICK_REASON_PLUGIN, "§l§The server is under maintenance");
     }
     if ($event->isKickReasonSet(PlayerPreLoginEvent::KICK_REASON_SERVER_FULL)) {
-      if (!in_array($playerInfo->getUsername(), HCFLoader::getInstance()->getConfig()->get("server-bypass"), true)) {
+      if (!in_array($playerInfo->getUsername(), $this->loader->getConfig()->get("server-bypass"), true)) {
         return;
       }
       $event->clearKickReason(PlayerPreLoginEvent::KICK_REASON_SERVER_FULL);
@@ -66,7 +72,7 @@ class HCFListener implements Listener
   
   public function onChunkLoad(ChunkLoadEvent $event): void
   {
-    $border = HCFLoader::getInstance()->getConfig()->getNested("map-border");
+    $border = $this->loader->getConfig()->getNested("map-border");
     $world = Server::getInstance()->getWorldManager()->getDefaultWorld();
     $limitX = $world->getSpawnLocation()->getFloorX() + $border >> 4;
     $limitZ = $world->getSpawnLocation()->getFloorZ() + $border >> 4;

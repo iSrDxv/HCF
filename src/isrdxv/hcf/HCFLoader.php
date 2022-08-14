@@ -114,7 +114,7 @@ class HCFLoader extends PluginBase
     new TaskManager($this);
     $this->regionManager = new RegionManager($this);
     $this->crateManager = new CrateManager($this);
-    $this->getServer()->getPluginManager()->registerEvents(new HCFListener(), $this);
+    $this->getServer()->getPluginManager()->registerEvents(new HCFListener($this), $this);
     $this->getServer()->getPluginManager()->registerEvents(new RegionListener(), $this);
   }
   

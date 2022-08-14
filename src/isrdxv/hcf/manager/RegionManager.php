@@ -2,10 +2,6 @@
 
 namespace isrdxv\hcf\manager;
 
-use const JSON_PRETTY_PRINT;
-use const JSON_BIGINT_AS_STRING;
-use const JSON_THROW_ON_ERROR;
-
 use isrdxv\hcf\HCFLoader;
 use isrdxv\hcf\region\{
   Region,
@@ -14,7 +10,6 @@ use isrdxv\hcf\region\{
 };
 
 use pocketmine\world\World;
-use pocketmine\utils\Filesystem;
 
 class RegionManager
 {
@@ -29,9 +24,9 @@ class RegionManager
   public function __construct(HCFLoader $loader)
   {
     $this->loader = $loader;
-    foreach(glob($loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . "*.json") as $file) {
+    foreach(glob($loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . "*" . $loader->getProvider()->getExtension()) as $file) {
       if (is_file($file)) {
-        $region = json_decode(file_get_contents($file), true);
+        $region = $loader->getProvider()->getAll($file);
         $region = new Region($region["name"], $region["custom_name"], $region["pvp_rule"], $region["block_rule"], $region["hunger_rule"], $loader->getServer()->getWorldManager()->getWorldByName($region["world"]));
         $region->setFirstPosition(RegionPosition::fromString($region["first_position"]));
         $region->setSecondPosition(RegionPosition::fromString("second_position"));
@@ -40,17 +35,16 @@ class RegionManager
     }
   }
   
-  //esto cuando creas la region
+  //this when you create the region
   public function createRegion(RegionData $regionData): void
   {
     if ($this->isRegion($regionData->name)) {
-      //texto aqui xd
       return;
     }
     $this->regions[$regionData->name] = new Region($regionData->name, $regionData->custom_name, $regionData->pvp_rule, $regionData->block_rule, $regionData->hunger_rule, $regionData->world);
   }
   
-  //esto es mas para cuando crean los spawns de la region xd
+  //this is more for when they create the spawns of the region xd
   public function setRegion(string $username, RegionData $regionData): void
   {
     if (!$this->isCreator($username)) {
@@ -94,20 +88,20 @@ class RegionManager
       return;
     }
     unset($this->regions[$region->getName()]);
-    @unlink($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $region->getName() . ".json");
+    @unlink($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $region->getName() . $this->loader->getProvider()->getExtension());
   }
   
   public function isRegionFile(string $name): bool
   {
-    return is_file($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $name . ".json");
+    return is_file($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $name . $this->loader->getProvider()->getExtension());
   }
   
   public function saveRegion(string $name): void
   {
-    if (is_file($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $name . ".json")) {
+    if ($this->isRegionFile($name)) {
       continue;
     }
-    Filesystem::safeFilePutContents($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $name . ".json", json_encode($this->regions[$name]->jsonSerialize(), JSON_PRETTY_PRINT | JSON_BIGINT_AS_STRING | JSON_THROW_ON_ERROR));
+    $this->loader->getProvider()->setAll($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $name . $this->loader->getProvider->getExtension(), $this->getRegion($name)->jsonSerialize());
   }
   
   public function getRegions(): array
@@ -145,7 +139,6 @@ class RegionManager
   public function setCreator(string $username, string $name, RegionData $regionData = null): void
   {
     if ($this->isCreator($username)) {
-      //texto aqui
       return;
     }
     $this->creators[$username] = new RegionCreator($username, $name, $regionData);
@@ -159,7 +152,6 @@ class RegionManager
   public function deleteCreator(string $username): void
   {
     if (!$this->isCreator($username)) {
-      //texto aqui
       return;
     }
     unset($this->creators[$username]);
