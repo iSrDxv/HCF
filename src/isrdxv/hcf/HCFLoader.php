@@ -94,11 +94,9 @@ class HCFLoader extends PluginBase
     }
     switch($this->getConfig()->get("provider")["data"]["name"]){
       case "yaml":
-        $this->data_extension = ".yml";
         $this->provider = new YamlProvider($this);
       break;
       case "json":
-        $this->data_extension = ".json";
         $this->provider = new JsonProvider($this);
       break;
       default:
