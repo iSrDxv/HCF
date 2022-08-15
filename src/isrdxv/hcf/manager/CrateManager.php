@@ -28,7 +28,7 @@ class CrateManager
       return;
     }
     //save file
-    $this->crates[$crateData["name"]] = new Crate();
+    $this->crates[$crateData["name"]] = new Crate($crateData["name"], $crateData["customName"]);
   }
   
   public function set(string $name, array $data): void
