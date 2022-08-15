@@ -42,5 +42,27 @@ class RegionListener implements Listener
       }
     }
   }
-    
+  
+  public function onBreak(BlockBreakEvent $event): void
+  {
+    $player = $event->getPlayer();
+    $region = $this->loader->getRegionManager()->getRegionInPosition($player->getPosition());
+    if ($region !== null) {
+      if ($region->getBlockRule() !== true) {
+        $event->setCancelled();
+      }
+    }
+  }
+
+  public function onPlace(BlockPlaceEvent $event): void
+  {
+    $player = $event->getPlayer();
+    $region = $this->loader->getRegionManager()->getRegionInPosition($player->getPosition());
+    if ($region !== null) {
+      if ($region->getBlockRule() !== true) {
+        $event->setCancelled();
+      }
+    }
+  }
+  
 }
