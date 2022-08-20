@@ -8,11 +8,6 @@ class CacheManager
 {
   private array $caches = [];
   
-  /*public function __construct()
-  {
-    self::setInstance($this);
-  }*/
-  
   public function set(string $name, mixed $data): bool
   {
     if (empty($name) or isset($this->caches[$name])) {
