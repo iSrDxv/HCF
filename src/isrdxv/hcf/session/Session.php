@@ -15,11 +15,15 @@ class Session
 {
   private string $username;
   
+  private ?string $factionRole = null;
+  
   private CooldownManager $cooldown;
   
   private Scoreboard $scoreboard;
   
   private CacheManager $cache;
+  
+  private ?Faction $faction;
   
   public function __construct(string $username)
   {
@@ -53,6 +57,26 @@ class Session
   public function getCache(): CacheManager
   {
     return $this->cache;
+  }
+  
+  public function getFaction(): ?Faction
+  {
+    return $this->faction ?? null;
+  }
+  
+  public function setFaction(?Faction $faction = null): void
+  {
+    $this->faction = $faction;
+  }
+  
+  public function getFactionRole(): ?string
+  {
+    return $this->factionRole ?? null;
+  }
+  
+  public function setFactionRole(?string $factionRole = null): void
+  {
+    $this->factionRole = $factionRole;
   }
   
 }
