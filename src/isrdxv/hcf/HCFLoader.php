@@ -72,7 +72,7 @@ class HCFLoader extends PluginBase
     if (!is_dir($this->getDataFolder() . "regions")) {
       @mkdir($this->getDataFolder() . "regions");
     }
-    foreach([$this->getDataFolder() . "languages/en_CA.ini", $this->getDataFolder() . "languages/en_US.ini", $this->getDataFolder() . "languages/es_ES.ini"] as $language) {
+    foreach(glob($this->getDataFolder() . "languages/*.ini") as $language) {
       $this->saveResource($language, false);
     }
     switch($this->getConfig()->get("provider")["database"]["name"]){
@@ -102,6 +102,7 @@ class HCFLoader extends PluginBase
         $this->getServer()->getPluginManager()->disablePlugin($this);
       break;
     }
+    $this->getServer()->getConfigGroup()->setConfigString("motd", $this->getConfig()->get("server-name"));
     $this->getServer()->getConfigGroup()->setConfigInt("max-players", $this->getConfig()->get("server-slots"));
   }
   
@@ -110,10 +111,16 @@ class HCFLoader extends PluginBase
     if (!InvMenuHandler::isRegistered()) {
       InvMenuHandler::register($this);
     }
+    
+    //manager
     new TaskManager($this);
     $this->regionManager = new RegionManager($this);
     $this->crateManager = new CrateManager($this);
     
+    //task
+    $this->getScheduler()->scheduleRepeatingTask(new MOTDTask($this), 40);
+    
+    //other
     //$this->registerCommands();
     $this->registerListeners();
   }
