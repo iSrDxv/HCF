@@ -64,7 +64,8 @@ class Crate
     if ($this->keyName === null || $this->keyLore === null) {
       return;
     }
-    $key = new Key(new ItemIdentifier(131, 0), $this->name);
+    //131,0
+    $key = new Key($this->name);
     return $key->setCount($count)->setCustomName($this->keyName)->setLore($this->keyLore)->setCrateName($this->name);
   }
   
