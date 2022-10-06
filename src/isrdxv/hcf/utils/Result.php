@@ -3,6 +3,10 @@
 namespace isrdxv\hcf\utils;
 
 use pocketmine\network\mcpe\protocol\PlaySoundPacket;
+use pocketmine\nbt\{
+  TreeRoot,
+  LittleEndianNbtSerializer
+};
 use pocketmine\entity\Entity;
 use pocketmine\item\Item;
 //use pocketmine\nbt\tag\CompoundTag;
