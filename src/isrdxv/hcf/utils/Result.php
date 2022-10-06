@@ -2,15 +2,37 @@
 
 namespace isrdxv\hcf\utils;
 
+use pocketmine\network\mcpe\protocol\PlaySoundPacket;
+use pocketmine\entity\Entity;
 use pocketmine\item\Item;
 //use pocketmine\nbt\tag\CompoundTag;
 
 class Result
 {
   
+  public static function playSound(Entity $entity, string $sound, int $volume = 1, int $pitch = 1, int $radius = 3): void
+  {
+    foreach($entity->getWorld()->getNearbyEntities($entity->getBoundingBox()->expandedCopy($radius, $radius, $radius)) as $entities) {
+      $pk = PlaySoundPacket::create($sound, $entities->getPosition()->x, $entities->getPosition()->y, $entities->getPosition()->z, $volume, $pitch);
+      $entities->getNetworkSession()->sendDataPacket($entities);
+    }
+  }
+  
   public static function encodeItem(Item $item): array
   {
-    return $item->jsonSerialize();
+    $array = [
+      $item->getId()
+    ];
+    if ($item->getMeta() !== 0) {
+      $array["damage"] = $item->getMeta();
+    }
+    if ($item->getCount() !== 1) {
+      $array["count"] = $item->getCount();
+    }
+    if ($item->hasNamedTag()) {
+      $array["nbt_64b"] = base64_encode((new LittleEndianNbtSerializer())->write(new TreeRoot($item->getNamedTag())));
+    }
+    return $array;
   }
   
   public static function encodeItems(array $contents): array
@@ -20,7 +42,7 @@ class Result
     }
     $data = [];
     foreach($contents as $slot => $item) {
-      $data[$slot] = $item->jsonSerialize();
+      $data[$slot] = $this->encodeItem($item);
     }
     return $data;
   }
@@ -46,7 +68,7 @@ class Result
   {
     $items = [];
     foreach($content as $item) {
-      $items[] = $item->jsonSerialize();
+      $items[] = $this->encodeItem($item);
     }
     return $items;
   }
