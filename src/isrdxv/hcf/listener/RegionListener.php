@@ -14,17 +14,11 @@ use pocketmine\event\{
 
 class RegionListener implements Listener
 {
-  private HCFLoader $loader;
-  
-  public function __construct($loader)
-  {
-    $this->loader = $loader;
-  }
   
   public function onExhaust(PlayerExhaustEvent $event): void
   {
     $player = $event->getPlayer();
-    $region = $this->loader->getRegionManager()->getRegionInPosition($player->getPosition());
+    $region = HCFLoader::getRegionManager()->getRegionInPosition($player->getPosition());
     if ($region !== null) {
       if ($region->getHungerRule() !== true) {
         $event->setCancelled();
@@ -35,7 +29,7 @@ class RegionListener implements Listener
   public function onDamage(EntityDamageEvent $event): void
   {
     $entity = $event->getEntity();
-    $region = $this->loader->getRegionManager()->getRegionInPosition($entity->getPosition());
+    $region = HCFLoader::getRegionManager()->getRegionInPosition($entity->getPosition());
     if ($region !== null) {
       if ($region->getPvpRule() !== true) {
         $event->setCancelled();
@@ -46,7 +40,7 @@ class RegionListener implements Listener
   public function onBreak(BlockBreakEvent $event): void
   {
     $player = $event->getPlayer();
-    $region = $this->loader->getRegionManager()->getRegionInPosition($player->getPosition());
+    $region = HCFLoader::getRegionManager()->getRegionInPosition($player->getPosition());
     if ($region !== null) {
       if ($region->getBlockRule() !== true) {
         $event->setCancelled();
@@ -57,7 +51,7 @@ class RegionListener implements Listener
   public function onPlace(BlockPlaceEvent $event): void
   {
     $player = $event->getPlayer();
-    $region = $this->loader->getRegionManager()->getRegionInPosition($player->getPosition());
+    $region = HCFLoader::getRegionManager()->getRegionInPosition($player->getPosition());
     if ($region !== null) {
       if ($region->getBlockRule() !== true) {
         $event->setCancelled();

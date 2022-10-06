@@ -7,12 +7,15 @@ use isrdxv\hcf\crate\Crate;
 use isrdxv\hcf\utils\Result;
 
 use pocketmine\item\Item;
+use pocketmine\utils\SingletonTrait;
 
 class CrateManager
 {
+  use SingletonTrait;
+  
   private array $crates = [];
   
-  public function __construct(HCFLoader $loader)
+  public function init(HCFLoader $loader)
   {
     foreach(glob($loader->getDataFolder() . "crates/*" . $loader->getProvider()->getExtension()) as $file) {
       if (!is_file($file)) {

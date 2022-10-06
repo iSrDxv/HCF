@@ -10,9 +10,12 @@ use isrdxv\hcf\region\{
 };
 
 use pocketmine\world\World;
+use pocketmine\utils\SingletonTrait;
 
 class RegionManager
 {
+  use SingletonTrait;
+  
   private HCFLoader $loader;
   
   /** @var Region[] **/
@@ -21,7 +24,7 @@ class RegionManager
   /** @var RegionCreator[] **/
   private array $creators = [];
   
-  public function __construct(HCFLoader $loader)
+  public function init(HCFLoader $loader)
   {
     $this->loader = $loader;
     foreach(glob($loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . "*" . $loader->getProvider()->getExtension()) as $file) {

@@ -50,10 +50,6 @@ class HCFLoader extends PluginBase
   
   private ProviderDB $providerDB;
   
-  private RegionManager $regionManager;
-
-  private CrateManager $crateManager;
-  
   public function onLoad(): void
   {
     if ($this->getDescription()->getVersion() !== HCF::VERSION()) {
@@ -114,8 +110,8 @@ class HCFLoader extends PluginBase
     
     //manager
     new TaskManager($this);
-    $this->regionManager = new RegionManager($this);
-    $this->crateManager = new CrateManager($this);
+    RegionManager::getInstance()->init($this);
+    CrateManager::getInstance()->init($this);
     
     //task
     $this->getScheduler()->scheduleRepeatingTask(new MOTDTask($this), 40);
@@ -146,14 +142,14 @@ class HCFLoader extends PluginBase
     return $this->providerDB;
   }
   
-  public function getRegionManager(): RegionManager
+  public static function getRegionManager(): RegionManager
   {
-    return $this->regionManager;
+    return RegionManager::getInstance();
   }
   
-  public function getCrateManager(): CrateManager
+  public static function getCrateManager(): CrateManager
   {
-    return $this->crateManager;
+    return CrateManager::getInstance();
   }
   
 }
