@@ -76,7 +76,7 @@ class Crate
     }
     $this->position->getWorld()->setBlock($this->position, VanillaBlocks::CHEST());
     
-    $this->floatingText->setPosition($this->position->getX() + 0.5, ($this->position->getY() - 1) + 1.5, $this->position->getZ() + 0.5, $this->position->getWorld());
+    $this->floatingText->setPosition(Position::fromObject($this->position->subtract(0, 1, 0)->add(0.5, 1.5, 0.5), $this->position->getWorld()));
     foreach($this->tags as $tag) {
       $this->tagEditor->putLine($tag);
     }

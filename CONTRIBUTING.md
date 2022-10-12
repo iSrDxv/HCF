@@ -1,5 +1,5 @@
 <p light="center">
-   <img src="resources/images/icon.png" width="500px" height="100%" />
+   <img src="resources/images/exodus-logo.png" width="500px" height="100%" />
 </p>
 
 # HCF
