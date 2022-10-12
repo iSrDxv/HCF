@@ -3,6 +3,9 @@
 namespace isrdxv\hcf\crate;
 
 use isrdxv\hcf\entity\FloatingText;
+use isrdxv\utils\Utils;
+
+use muqsit\invmenu\InvMenu;
 
 use pocketmine\block\VanillaBlocks;
 use pocketmine\world\Position;
@@ -20,8 +23,10 @@ class Crate
   
   private string $keyLore;
   
-  private CrateChest $block;
+  private BlockCrate $block;
 
+  private InvMenu $menu;
+  
   private FloatingText $floatingText;
   
   public function __construct(string $name, string $customName, array $tags, string $blockId, array $position, array $items, string $keyName, array $keyLore = [])
@@ -32,10 +37,12 @@ class Crate
     $this->name = $name;
     $this->customName = $customName;
     $this->tags = $tags;
-    $this->block = new CrateChest($blockId, $items);
-    $this->position = Result::decodePosition($position);
+    $this->block = new BlockCrate($blockId);
+    $this->position = Utils::decodePosition($position);
     $this->keyName = $keyName;
     $this->keyLore = $keyLore;
+    $this->menu = InvMenu::create(InvMenu::TYPE_CHEST);
+    $this->menu->setName($this->crate->getName());
     $this->floatingText = new FloatingText();
   }
   
@@ -44,19 +51,41 @@ class Crate
     return $this->name;
   }
   
-  public function getBlock(): CrateChest
-  {
-    return $this->block;
-  }
-  
   public function getCustomName(): string
   {
     return $this->customName;
   }
   
+  public function getMenu(): InvMenu
+  {
+    return $this->menu;
+  }
+  
+  public function getBlock(): BlockCrate
+  {
+    return $this->block;
+  }
+    
   public function getFloatingText(): FloatingText
   {
     return $this->floatingText;
+  }
+  
+  public function getItems(): array
+  {
+    return $this->items;
+  }
+  
+  public function setItems(array $items): void
+  {
+    $this->items = $items;
+    for ($i = 0; $i <= $this->menu->getInventory()->getSize() - 1; $i++) {
+      $item = VanillaBlocks::STAINED_GLASS();
+      if (isset($items)) {
+        $item = array_unshift($items);
+      }
+      $this->menu->getInventory()->setItem($i, $item);
+    }
   }
   
   public function getCrateKey(int $count = 1): Key
@@ -94,4 +123,13 @@ class Crate
     $this->spawn();
   }
   
+  public function despawn(): void
+  {
+    
+  }
+  
+  public function save(): void
+  {
+    
+  }
 }

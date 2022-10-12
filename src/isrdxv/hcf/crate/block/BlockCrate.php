@@ -4,41 +4,38 @@ namespace isrdxv\hcf\crate\block;
 
 use isrdxv\hcf\crate\Crate;
 
-use muqsit\invmenu\InvMenu;
-
 use pocketmine\player\Player;
 use pocketmine\item\ItemFactory;
 
 /**
  * Imaginary chest (don't believe it's real xd)
  */
-class CrateChest
+class BlockCrate
 {
   private string $blockId;
   
   /** @var Item[] **/
   private array $items = [];
   
-  public function __construct(string $blockId, array $items)
+  public function __construct(string $blockId)
   {
-    $this->blockId = $blockId;
-    $this->items = $items;
+    $blockId = explode(":", $blockId);
+    $this->id = $blockId[0];
+    $this->meta = $blockId[1];
   }
   
-  public function getBlockId(): array
+  public function getId(): int
   {
-    return explode(":", $this->blockId);
+    return $this->id;
   }
   
-  public function getItems(): array
+  public function getMeta(): int
   {
-    return $this->items;
+    return $this->meta;
   }
   
   public function toShow(Player $player): void
   {
-    $menu = InvMenu::create(InvMenu::TYPE_CHEST);
-    $menu->setName($this->crate->getName());
     for($i = count($this->items) - 1; $i <= 26; $i++) {
       if (empty($this->items[$i])) {
         $this->items[$i] = ItemFactory::getInstance()->air();
