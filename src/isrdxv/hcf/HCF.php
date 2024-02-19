@@ -32,7 +32,7 @@ class HCF
   
   public const PLUGIN_VERSION = "1.0.0";
   
-  public const DEVELOPMENT_VERSION = "1";
+  public const DEVELOPMENT_VERSION = "2";
   
   public const IS_IN_DEVELOPMENT = true;
   

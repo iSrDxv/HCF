@@ -9,12 +9,12 @@
 name: HCF-isrdxv
 prefix: "HCF-Core"
 load: "STARTUP"
-api: 4.0.0
+api: 5.0.0
 main: isrdxv\hcf\HCFLoader
-version: 1.0.0+dev1
+version: 1.0.0+dev2
 author: iSrDxv
 website: https://github.com/iSrDxv/HCF
-mcpe-protocol: 534
+mcpe-protocol: 630
 
 permissions:
   hcf.bypass:
