@@ -69,8 +69,8 @@ class HCFLoader extends PluginBase
     foreach(["languages/en_US.json", "languages/es_ES.json"] as $language) {
       $this->saveResource($language, true);
     }
-    /*$file = Filesystem::fileGetContents($this->getDataFolder() . "languages/en_US.json");
-    var_dump(json_decode($file, associative: true, flags: JSON_PRETTY_PRINT | JSON_BIGINT_AS_STRING | JSON_THROW_ON_ERROR));*/
+    $file = Filesystem::fileGetContents($this->getDataFolder() . "languages/en_US.json");
+    var_dump(json_decode($file, associative: true, flags: JSON_PRETTY_PRINT | JSON_BIGINT_AS_STRING | JSON_THROW_ON_ERROR));
 
     //WEBHOOKS
     $this->webhookUrl = $this->getConfig()->get("webhooks")["global"];
