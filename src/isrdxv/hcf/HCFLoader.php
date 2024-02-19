@@ -66,7 +66,7 @@ class HCFLoader extends PluginBase
     if (!is_dir($this->getDataFolder() . "regions" . DIRECTORY_SEPARATOR)) {
       @mkdir($this->getDataFolder() . "regions" . DIRECTORY_SEPARATOR);
     }
-    foreach(["languages/en_US.json", "languages/es_ES.json"] as $language) {
+    foreach(["languages" . DIRECTORY_SEPARATOR . "en_US.json", "languages" . DIRECTORY_SEPARATOR . "es_ES.json"] as $language) {
       $this->saveResource($language);
     }
     $file = Filesystem::fileGetContents($this->getDataFolder() . "languages/en_US.json");
