@@ -36,10 +36,14 @@ use pocketmine\utils\{
   SingletonTrait
 };
 
+use exodus\translation\Translation;
+
 class HCFLoader extends PluginBase
 {
   use SingletonTrait;
   
+  private Translation $translation;
+
   private string $webhookUrl;
 
   private string $kothWebhook;
@@ -69,8 +73,7 @@ class HCFLoader extends PluginBase
     foreach(["languages" . DIRECTORY_SEPARATOR . "en_US.json", "languages" . DIRECTORY_SEPARATOR . "es_ES.json"] as $language) {
       $this->saveResource($language);
     }
-    $file = Filesystem::fileGetContents($this->getDataFolder() . "languages/en_US.json");
-    var_dump(json_decode($file, associative: true, flags: JSON_PRETTY_PRINT | JSON_BIGINT_AS_STRING | JSON_THROW_ON_ERROR));
+    $this->translation = new Translation($this);
 
     //WEBHOOKS
     $this->webhookUrl = $this->getConfig()->get("webhooks")["global"];
