@@ -1,8 +1,6 @@
 {
     "name": "English Language",
-    "translations": [
-        {
-            "welcome.msg": "%username% joined!!"
-        }
-    ]
+    "translations": {
+        "welcome.msg": "%username% joined!!"
+    }
 }
