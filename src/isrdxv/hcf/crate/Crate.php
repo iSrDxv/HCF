@@ -2,6 +2,7 @@
 
 namespace isrdxv\hcf\crate;
 
+use isrdxv\hcf\crate\block\BlockCrate;
 use isrdxv\hcf\entity\FloatingText;
 use isrdxv\utils\Utils;
 
@@ -42,7 +43,7 @@ class Crate
     $this->keyName = $keyName;
     $this->keyLore = $keyLore;
     $this->menu = InvMenu::create(InvMenu::TYPE_CHEST);
-    $this->menu->setName($this->crate->getName());
+    $this->menu->setName($customName);
     $this->floatingText = new FloatingText();
   }
   
