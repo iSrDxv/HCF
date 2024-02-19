@@ -60,8 +60,8 @@ class HCFLoader extends PluginBase
     }
     self::setInstance($this);
     $this->saveDefaultConfig();
-    if (!is_dir($this->getDataFolder() . "languages")) {
-      @mkdir($this->getDataFolder() . "languages");
+    if (!is_dir($this->getDataFolder() . "languages" . DIRECTORY_SEPARATOR)) {
+      @mkdir($this->getDataFolder() . "languages" . DIRECTORY_SEPARATOR);
     }
     if (!is_dir($this->getDataFolder() . "regions")) {
       @mkdir($this->getDataFolder() . "regions");
