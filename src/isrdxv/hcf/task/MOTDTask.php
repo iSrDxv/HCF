@@ -1,11 +1,11 @@
 <?php
 
-namespace hcf\isrdxv\task;
+namespace isrdxv\hcf\task;
 
 use pocketmine\scheduler\Task;
 use pocketmine\Server;
 
-use hcf\isrdxv\HCFLoader;
+use isrdxv\hcf\HCFLoader;
 
 class MOTDTask extends Task
 {

@@ -30,14 +30,6 @@ class HCF
   
   public const BYPASS_PERMISSION = "hcf.bypass";
   
-  public const WEBHOOK_URL = "";
-  
-  public const KOTH_WEBHOOK = "";
-  
-  public const SOTW_WEBHOOK = "";
-  
-  public const EOTW_WEBHOOK = "";
-  
   public const PLUGIN_VERSION = "1.0.0";
   
   public const DEVELOPMENT_VERSION = "1";

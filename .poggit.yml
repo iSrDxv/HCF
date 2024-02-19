@@ -6,12 +6,12 @@ projects:
   HCF:
     path: ""
     lint: 
-     phpstan: false
+      phpstan: false
     icon: "resources/images/icon.png"
     libs:
       - src: dktapps-pm-pl/pmforms/pmforms
         version: ^2.1.0
-      . src: Muqsit/InvMenu/InvMenu
+      - src: Muqsit/InvMenu/InvMenu
         branch: pm5
         version: ^^4.6.5
       - src: poggit/libasynql/libasynql

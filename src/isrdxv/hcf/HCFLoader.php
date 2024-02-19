@@ -19,19 +19,12 @@ namespace isrdxv\hcf;
 use PDO;
 
 use isrdxv\hcf\HCF;
-use isrdxv\hcf\provider\{
-  Provider,
-  ProviderDB,
-  MySQLProvider,
-  SQLite3Provider,
-  JsonProvider,
-  YamlProvider
-};
 use isrdxv\hcf\manager\{
   TaskManager,
   RegionManager,
   CrateManager
 };
+use isrdxv\hcf\task\MOTDTask;
 
 use muqsit\invmenu\InvMenuHandler;
 
@@ -46,10 +39,14 @@ class HCFLoader extends PluginBase
 {
   use SingletonTrait;
   
-  private Provider $provider;
+  private string $webhookUrl;
+
+  private string $kothWebhook;
   
-  private ProviderDB $providerDB;
-  
+  private string $sotwWebhook;
+
+  private string $eotwWebhook;
+
   public function onLoad(): void
   {
     if ($this->getDescription()->getVersion() !== HCF::VERSION()) {
@@ -68,36 +65,10 @@ class HCFLoader extends PluginBase
     if (!is_dir($this->getDataFolder() . "regions")) {
       @mkdir($this->getDataFolder() . "regions");
     }
-    foreach(glob($this->getDataFolder() . "languages/*.ini") as $language) {
+    foreach(glob($this->getDataFolder() . "languages/*.json") as $language) {
       $this->saveResource($language, false);
     }
-    switch($this->getConfig()->get("provider")["database"]["name"]){
-      case "sqlite3":
-        $sqlite = $this->getConfig()->get("provider")["database"]["sqlite3"]["file-name"];
-        $this->providerDB = new SQLite3Provider(new PDO("sqlite:" . $this->getDataFolder() . DIRECTORY_SEPARATOR . $sqlite));
-      break;
-      case "mysql":
-        if (file_exists($this->getDataFolder() . $this->getConfig()->get("provider")["database"]["sqlite3"]["file-name"])) {
-          //unlink($this->getDataFolder() . $this->getConfig()->get("provider")["database"]["sqlite3"]["file-name"]);
-        }
-        $sql = $this->getConfig()->get("provider")["database"]["mysql"];
-        $this->providerDB = new MySQLProvider(new PDO("mysql:host={$sql["address"]};port={$sql["port"]};dbname={$sql["dbname"]};charset=UTF8", $sql["username"], $sql["pass"]));
-      break;
-      default:
-        $this->getServer()->getPluginManager()->disablePlugin($this);
-      break;
-    }
-    switch($this->getConfig()->get("provider")["data"]["name"]){
-      case "yaml":
-        $this->provider = new YamlProvider($this);
-      break;
-      case "json":
-        $this->provider = new JsonProvider($this);
-      break;
-      default:
-        $this->getServer()->getPluginManager()->disablePlugin($this);
-      break;
-    }
+    
     $this->getServer()->getConfigGroup()->setConfigString("motd", $this->getConfig()->get("server-name"));
     $this->getServer()->getConfigGroup()->setConfigInt("max-players", $this->getConfig()->get("server-slots"));
   }
@@ -124,22 +95,12 @@ class HCFLoader extends PluginBase
   public function registerListeners(): void
   {
     $this->registerListener(new HCFListener($this));
-    $this->registerListener(new RegionListener());
+    //$this->registerListener(new RegionListener());
   }
   
   private function registerListener(Listener $listener): void
   {
     $this->getServer()->getPluginManager()->registerEvents($listener, $this);
-  }
-  
-  public function getProvider(): Provider
-  {
-    return $this->provider;
-  }
-  
-  public function getProviderDB(): ProviderDB
-  {
-    return $this->providerDB;
   }
   
   public static function getRegionManager(): RegionManager
