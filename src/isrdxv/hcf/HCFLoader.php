@@ -55,7 +55,7 @@ class HCFLoader extends PluginBase
     if (HCF::IS_IN_DEVELOPMENT) {
       $prefix = str_replace("%type%", "DEVELOPMENT", HCF::PREFIX);
       $this->getLogger()->warning(TextFormat::RED . $prefix . " We recommend you not to use this version, since it is under development");
-      $this->getLogger()->warning($prefix . "These types of versions are very prone to fatal errors.");
+      $this->getLogger()->warning($prefix . " These types of versions are very prone to fatal errors.");
     }
     self::setInstance($this);
     $this->saveDefaultConfig();
