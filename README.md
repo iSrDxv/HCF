@@ -14,13 +14,13 @@
 <img alt="GitHub commits since latest release (by SemVer)" src="https://img.shields.io/github/commits-since/iSrDxv/HCF/latest/main?sort=semver&style=for-the-badge"><br>
 <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/iSrDxv/HCF?style=for-the-badge">
 </p>
-
+-->
 # Starting
 - [Documentation](https://github.com/iSrDxv/HCF/wiki)
-- [Discord](https://discord.gg/VPb6fBczp9)
--->
+- [Discord](https://discord.com/invite/PsKkJhNEkM)
+
 <p align="center">
-  <img src="resources/images/icon.png" /><br>
+  <img src="resources/images/icon.png"/><br>
   <h1>Base core from HCF for PocketMine-MP 5.0.0</h1>
 </p>
 
@@ -54,7 +54,7 @@ You can customize the plugin to your liking, by editing:
 <li>MOTD</li>
 <li>Server Messages</li>
 <li>Scoreboard</li>
-<li>Chest Inventory</li>
+<li>Inventory Chest</li>
 <li>BossBar</li>
 <li>Factions System + Messages</li>
 <li>Kits System</li>
@@ -75,13 +75,6 @@ You can customize the plugin to your liking, by editing:
 
 <b>@ExodusDevs</b>
 <ul>
-<li><a href="https://github.com/iSrDxv">iSrDxv</a></li>
-</ul><br>
-<b>@HyperDevs</b>
-<ul>
-<li><a href="https://github.com/iDev90G">imDevi</a></li>
-</ul><br>
-<ul>
-
-
+<li><a href="https://github.com/iSrDxv">iSrDxv</a></li><br>
+<li><a href="https://github.com/iDev90G">imDevi</a></li><br>
 </ul>

@@ -2,5 +2,26 @@
 build-by-default: true
 branches:
 - stable
-projects: []
+projects:
+  HCF:
+    path: ""
+    lint: 
+     phpstan: false
+    icon: "resources/images/icon.png"
+    libs:
+      - src: dktapps-pm-pl/pmforms/pmforms
+        version: ^2.1.0
+      . src: Muqsit/InvMenu/InvMenu
+        branch: pm5
+        version: ^^4.6.5
+      - src: poggit/libasynql/libasynql
+        version: ^4.2.0
+      - src: ifera-mc/UpdateNotifier/UpdateNotifier
+        version: ^3.1.0
+      - src: ExodusDevs/TranslationAPI/Translation
+        version: ^1.1.3
+      - src: ExodusDevs/Scoreboard/Scoreboard
+        version: ^1.0.0
+      - src: ExodusDevs/Cooldown/Cooldown
+        version: ^0.0.0
 ...
