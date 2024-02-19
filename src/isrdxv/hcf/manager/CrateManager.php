@@ -17,21 +17,22 @@ class CrateManager
   
   public function init(HCFLoader $loader)
   {
-    foreach(glob($loader->getDataFolder() . "crates/*" . $loader->getProvider()->getExtension()) as $file) {
+    foreach(glob($loader->getDataFolder() . "crates/*.json") as $file) {
       if (!is_file($file)) {
         return;
       }
-      $this->set(basename($file, $loader->getProvider()->getExtension()), $loader->getProvider()->getAll($file));
+      $this->set(basename($file, ".json"), $loader->getProvider()->getAll($file));
     }
   }
   
   public function create(array $crateData): bool
   {
     if ($this->exists($crateData["name"])) {
-      return;
+      return false;
     }
     //save file
     $this->crates[$crateData["name"]] = new Crate($crateData["name"], $crateData["customName"]);
+    return true;
   }
   
   public function set(string $name, array $data): void

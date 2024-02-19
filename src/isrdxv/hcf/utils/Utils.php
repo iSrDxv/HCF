@@ -11,7 +11,7 @@ use pocketmine\entity\Entity;
 use pocketmine\item\Item;
 //use pocketmine\nbt\tag\CompoundTag;
 
-class Result
+class Utils
 {
   
   public static function playSound(Entity $entity, string $sound, int $volume = 1, int $pitch = 1, int $radius = 3): void

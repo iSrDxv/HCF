@@ -69,6 +69,12 @@ class HCFLoader extends PluginBase
       $this->saveResource($language, false);
     }
     
+    //WEBHOOKS
+    $this->webhookUrl = $this->getConfig()->get("webhooks")["global"];
+    $this->kothWebhook = $this->getConfig()->get("webhooks")["koth"];
+    $this->sotwWebhook = $this->getConfig()->get("webhooks")["sotw"];
+    $this->eotwWebhook = $this->getConfig()->get("webhooks")["eotw"];
+
     $this->getServer()->getConfigGroup()->setConfigString("motd", $this->getConfig()->get("server-name"));
     $this->getServer()->getConfigGroup()->setConfigInt("max-players", $this->getConfig()->get("server-slots"));
   }
@@ -103,12 +109,32 @@ class HCFLoader extends PluginBase
     $this->getServer()->getPluginManager()->registerEvents($listener, $this);
   }
   
-  public static function getRegionManager(): RegionManager
+  function getWebhookGlobal(): string
+  {
+    return $this->webhookUrl;
+  }
+
+  function getWebhookKoth(): string
+  {
+    return $this->kothWebhook;
+  }
+
+  function getWebhookSOTW(): string
+  {
+    return $this->sotwWebhook;
+  }
+
+  function getWebhookEOTW(): string
+  {
+    return $this->eotwWebhook;
+  }
+
+  static function getRegionManager(): RegionManager
   {
     return RegionManager::getInstance();
   }
   
-  public static function getCrateManager(): CrateManager
+  static function getCrateManager(): CrateManager
   {
     return CrateManager::getInstance();
   }

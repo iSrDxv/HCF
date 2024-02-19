@@ -1,17 +1,21 @@
 <?php
 
-namespace isrdxv\hcf\session;
+namespace isrdxv\hcf\player;
 
 use isrdxv\hcf\HCFLoader;
 
 use pocketmine\player\Player;
 use pocketmine\Server;
 
-use libs\cooldown\CooldownManager;
-use libs\scoreboard\Scoreboard;
-use libs\cache\CacheManager;
+use exodus\cooldown\CooldownManager;
+use exodus\scoreboard\Scoreboard;
+use exodus\cache\CacheManager;
+use pocketmine\entity\Location;
+use pocketmine\nbt\tag\CompoundTag;
+use pocketmine\network\mcpe\NetworkSession;
+use pocketmine\player\PlayerInfo;
 
-class Session
+class HCFPlayer extends Player
 {
   private string $username;
   
@@ -25,9 +29,9 @@ class Session
   
   private ?Faction $faction;
   
-  public function __construct(string $username)
+  public function __construct(Server $server, NetworkSession $session, PlayerInfo $playerInfo, bool $authenticated, Location $location, ?CompoundTag $namedtag)
   {
-    $this->username = $username;
+    parent::__construct($server, $session, $playerInfo, $authenticated, $location, $namedtag);
     if (empty($this->cooldown)) {
       $this->cooldown = new CooldownManager();
     }
@@ -37,11 +41,6 @@ class Session
     if (empty($this->cache)) {
       $this->cache = new CacheManager();
     }
-  }
-  
-  public function getPlayer(): ?Player
-  {
-    return Server::getInstance()->getPlayerByPrefix($this->username);
   }
   
   public function getCooldown(): CooldownManager

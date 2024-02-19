@@ -4,7 +4,7 @@ namespace isrdxv\hcf;
 
 use isrdxv\hcf\HCFLoader;
 use isrdxv\hcf\manager\SessionManager;
-
+use isrdxv\hcf\player\HCFPlayer;
 use pocketmine\event\{
   Listener,
   player\PlayerQuitEvent,
@@ -13,6 +13,7 @@ use pocketmine\event\{
   player\PlayerLoginEvent,
   world\ChunkLoadEvent
 };
+use pocketmine\event\player\PlayerCreationEvent;
 use pocketmine\Server;
 use pocketmine\player\{
   PlayerInfo,
@@ -28,20 +29,25 @@ class HCFListener implements Listener
     $this->loader = $loader;
   }
   
+  function registerClass(PlayerCreationEvent $event): void
+  {
+    $event->setPlayerClass(HCFPlayer::class);
+  }
+
   public function onPreLogin(PlayerPreLoginEvent $event): void
   {
     $playerInfo = $event->getPlayerInfo();
-    if ($this->loader->getConfig()->get("server-maintenance")) {
-      $event->setKickReason(PlayerPreLoginEvent::KICK_REASON_PLUGIN, "§l§The server is under maintenance");
+    if ($event->isKickFlagSet(PlayerPreLoginEvent::KICK_FLAG_SERVER_WHITELISTED)) {
+      $event->setKickFlag(PlayerPreLoginEvent::KICK_FLAG_SERVER_WHITELISTED, "§l§The server is under maintenance");
     }
-    if ($event->isKickReasonSet(PlayerPreLoginEvent::KICK_REASON_SERVER_FULL)) {
+    if ($event->isKickFlagSet(PlayerPreLoginEvent::KICK_FLAG_SERVER_FULL)) {
       if (!in_array($playerInfo->getUsername(), $this->loader->getConfig()->get("server-bypass"), true)) {
         return;
       }
-      $event->clearKickReason(PlayerPreLoginEvent::KICK_REASON_SERVER_FULL);
+      $event->clearKickFlag(PlayerPreLoginEvent::KICK_FLAG_SERVER_FULL);
     }
-    if (empty($playerInfo->getXuid()) || !$playerInfo instanceof XboxLivePlayerInfo) {
-      $event->setKickReason(PlayerPreLoginEvent::KICK_REASON_PLUGIN, "§l§cPlease log in to Xbox Live before entering the server, thanks :)");
+    if (!$playerInfo instanceof XboxLivePlayerInfo) {
+      $event->setKickFlag(PlayerPreLoginEvent::KICK_FLAG_PLUGIN, "§l§cPlease log in to Xbox Live before entering the server, thanks :)");
       return;
     }
   }
@@ -49,25 +55,29 @@ class HCFListener implements Listener
   public function onLogin(PlayerLoginEvent $event): void
   {
     $player = $event->getPlayer();
-    SesssionManager::getInstance()->set($player->getName());
+    if (!$player instanceof HCFPlayer) {
+      //$event->setKickMessage();
+      return;
+    }
   }
   
   public function onJoin(PlayerJoinEvent $event): void
   {
     $player = $event->getPlayer();
-    $event->setJoinMessage("§0[§a+§0] §a{$player->getName()}");
-    $session = SessionManager::getInstance()->get($player->getName());
-    if ($session->getScoreboard() !== null) {
-      $session->getScoreboard()->init();
+    if (!$player instanceof HCFPlayer) {
+      return;
     }
-    $player->teleport(Server::getInstance()->getWorldManager()->getDefaultWorld()->getSafeSpawn());
+    //$event->setJoinMessage("§0[§a+§0] §a{$player->getName()}");
+    if ($player->getScoreboard() !== null) {
+      $player->getScoreboard()->init();
+    }
+    $player->teleport(Server::getInstance()->getWorldManager()->getDefaultWorld()->getSpawnLocation(), $player->getEyeHeight(), $player->getEyeHeight());
   }
   
   public function onQuit(PlayerQuitEvent $event): void
   {
     $player = $event->getPlayer();
     $event->setQuitMessage("§0[§c-§0] §c{$player->getName()}");
-    SessionManager::getInstance()->delete($player->getName());
   }
   
   public function onChunkLoad(ChunkLoadEvent $event): void

@@ -6,10 +6,14 @@ use isrdxv\hcf\HCFLoader;
 use isrdxv\hcf\region\{
   Region,
   utils\RegionData,
+  utils\RegionCreator,
   utils\RegionPosition
 };
 
-use pocketmine\world\World;
+use pocketmine\world\{
+  Position,
+  World
+};
 use pocketmine\utils\SingletonTrait;
 
 class RegionManager
@@ -27,7 +31,7 @@ class RegionManager
   public function init(HCFLoader $loader)
   {
     $this->loader = $loader;
-    foreach(glob($loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . "*" . $loader->getProvider()->getExtension()) as $file) {
+    foreach(glob($loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . "*.json") as $file) {
       if (is_file($file)) {
         $region = $loader->getProvider()->getAll($file);
         $region = new Region($region["name"], $region["custom_name"], $region["pvp_rule"], $region["block_rule"], $region["hunger_rule"], $loader->getServer()->getWorldManager()->getWorldByName($region["world"]));
@@ -55,7 +59,7 @@ class RegionManager
     }
     $region = new Region($regionData->name, $regionData->custom_name, $regionData->pvp_rule, $regionData->block_rule, $regionData->hunger_rule, $regionData->world);
     $region->setFirstPosition($regionData->first_position);
-    $region->setSecondPosition($refionData->second_position);
+    $region->setSecondPosition($regionData->second_position);
     $this->regions[$regionData->name] = $region;
     $this->saveRegion($regionData->name);
     $this->deleteCreator($username);
@@ -91,18 +95,18 @@ class RegionManager
       return;
     }
     unset($this->regions[$region->getName()]);
-    @unlink($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $region->getName() . $this->loader->getProvider()->getExtension());
+    @unlink($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $region->getName() . ".json");
   }
   
   public function isRegionFile(string $name): bool
   {
-    return is_file($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $name . $this->loader->getProvider()->getExtension());
+    return is_file($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $name . ".json");
   }
   
   public function saveRegion(string $name): void
   {
     if ($this->isRegionFile($name)) {
-      continue;
+      return;
     }
     $this->loader->getProvider()->setAll($this->loader->getDataFolder() . "regions" . DIRECTORY_SEPARATOR . $name . $this->loader->getProvider->getExtension(), $this->getRegion($name)->jsonSerialize());
   }

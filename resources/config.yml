@@ -20,20 +20,14 @@ map-border: 2000
 
 # Faction custom data
 faction:
- max-allies: 0
- max-players: 1
+  max-allies: 0
+  max-players: 1
  
-# Provider
-provider:
- database:
-  name: sqlite3
-  sqlite3: 
-    file-name: "HCFData.db"
-  mysql: 
-    address: "127.0.0.1"
-    port: 3306
-    username: "root"
-    pass: ""
-    dbname: "HCF"
- data:
-  name: json
+webhooks:
+  global: ""
+  koth: ""
+  sotw: ""
+  eotw: ""
+
+# Database configuration
+database:

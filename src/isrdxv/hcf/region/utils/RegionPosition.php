@@ -29,7 +29,7 @@ class RegionPosition extends Vector3
     return $this->pitch;
   }
   
-  public function fromObject(Vector3 $pos, float $yaw = 0.0, float $pitch 0.0): self
+  function fromObject(Vector3 $pos, float $yaw = 0.0, float $pitch 0.0): self
   {
     return new self($pos->x, $pos->y, $pos->z, $yaw, $pitch);
   }

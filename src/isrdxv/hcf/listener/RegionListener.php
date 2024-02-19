@@ -21,7 +21,7 @@ class RegionListener implements Listener
     $region = HCFLoader::getRegionManager()->getRegionInPosition($player->getPosition());
     if ($region !== null) {
       if ($region->getHungerRule() !== true) {
-        $event->setCancelled();
+        $event->cancel();
       }
     }
   }
@@ -32,7 +32,7 @@ class RegionListener implements Listener
     $region = HCFLoader::getRegionManager()->getRegionInPosition($entity->getPosition());
     if ($region !== null) {
       if ($region->getPvpRule() !== true) {
-        $event->setCancelled();
+        $event->cancel();
       }
     }
   }
@@ -43,7 +43,7 @@ class RegionListener implements Listener
     $region = HCFLoader::getRegionManager()->getRegionInPosition($player->getPosition());
     if ($region !== null) {
       if ($region->getBlockRule() !== true) {
-        $event->setCancelled();
+        $event->cancel();
       }
     }
   }
@@ -54,7 +54,7 @@ class RegionListener implements Listener
     $region = HCFLoader::getRegionManager()->getRegionInPosition($player->getPosition());
     if ($region !== null) {
       if ($region->getBlockRule() !== true) {
-        $event->setCancelled();
+        $event->cancel();
       }
     }
   }

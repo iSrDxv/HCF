@@ -18,6 +18,7 @@ class MOTDTask extends Task
   
   public function onRun(): void
   {
+    $messages = [];
     Server::getInstance()->getNetwork()->setName($this->loader->getConfig()->get("server-name"));
   }
   
