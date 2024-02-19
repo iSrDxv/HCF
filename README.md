@@ -25,7 +25,7 @@
 </p>
 
 ## Information
-ExodusDevs and HyperDevs with associates have made an effort to develop a Core Base of HCF, which you can edit, configure and use on your Minecraft BE server.
+ExodusDevs with associates have made an effort to develop a Core Base of HCF, which you can edit, configure and use on your Minecraft BE server.
 
 ## Future Updates
 We plan to keep this plugin active for community use, so it will receive future updates, including optimization of it.
