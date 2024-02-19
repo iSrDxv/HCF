@@ -31,7 +31,8 @@ use muqsit\invmenu\InvMenuHandler;
 use pocketmine\event\Listener;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\{
-  TextFormat,
+    Filesystem,
+    TextFormat,
   SingletonTrait
 };
 
@@ -66,8 +67,10 @@ class HCFLoader extends PluginBase
       @mkdir($this->getDataFolder() . "regions");
     }
     foreach(glob($this->getDataFolder() . "languages/*.json") as $language) {
-      $this->saveResource($language, false);
+      $this->saveResource($language);
     }
+    $file = Filesystem::fileGetContents($this->getDataFolder() . "languages/en_US.json");
+    var_dump(json_decode($file, associative: true, flags: JSON_PRETTY_PRINT | JSON_BIGINT_AS_STRING | JSON_THROW_ON_ERROR));
     
     //WEBHOOKS
     $this->webhookUrl = $this->getConfig()->get("webhooks")["global"];
