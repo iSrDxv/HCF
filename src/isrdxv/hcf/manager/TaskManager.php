@@ -22,7 +22,7 @@ class TaskManager
   
   public function __construct(HCFLoader $loader)
   {
-    self::setInstance($loader);
+    self::setInstance($this);
     $this->loader = $loader;
   }
   
