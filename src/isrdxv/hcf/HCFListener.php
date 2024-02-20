@@ -79,16 +79,20 @@ class HCFListener implements Listener
   public function onQuit(PlayerQuitEvent $event): void
   {
     $player = $event->getPlayer();
+    if (!$player instanceof HCFPlayer) {
+      return;
+    }
     $event->setQuitMessage("§0[§c-§0] §c{$player->getName()}");
+    //$player->destroy();
   }
   
   public function onChunkLoad(ChunkLoadEvent $event): void
   {
     $world = Server::getInstance()->getWorldManager()->getDefaultWorld();
-    $limitX = $world->getSpawnLocation()->getFloorX() + $this->loader->getMapBorder() >> 4;
-    $limitZ = $world->getSpawnLocation()->getFloorZ() + $this->loader->getMapBorder() >> 4;
-    $subtractLimitX = $world->getSpawnLocation()->getFloorX() + -$this->loader->getMapBorder() >> 4;
-    $subtractLimitZ = $world->getSpawnLocation()->getFloorZ() + -$this->loader->getMapBorder() >> 4;
+    $limitX = $world->getSpawnLocation()->getFloorX() + $this->loader->getConfigData()->getMapBorder() >> 4;
+    $limitZ = $world->getSpawnLocation()->getFloorZ() + $this->loader->getConfigData()->getMapBorder() >> 4;
+    $subtractLimitX = $world->getSpawnLocation()->getFloorX() + -$this->loader->getConfigData()->getMapBorder() >> 4;
+    $subtractLimitZ = $world->getSpawnLocation()->getFloorZ() + -$this->loader->getConfigData()->getMapBorder() >> 4;
     if (($event->getChunkX() >> 4) > $limitX || ($event->getChunkZ() >> 4) > $limitZ) {
       $world->unloadChunk($event->getChunkX(), $event->getChunkZ());
     }

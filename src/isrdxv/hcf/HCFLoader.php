@@ -37,6 +37,7 @@ use pocketmine\utils\{
 };
 
 use exodus\translation\Translation;
+use isrdxv\hcf\config\ConfigData;
 
 class HCFLoader extends PluginBase
 {
@@ -44,15 +45,7 @@ class HCFLoader extends PluginBase
   
   private Translation $translation;
 
-  private int $border;
-
-  private string $webhookUrl;
-
-  private string $kothWebhook;
-  
-  private string $sotwWebhook;
-
-  private string $eotwWebhook;
+  private ConfigData $configData;
 
   public function onLoad(): void
   {
@@ -77,16 +70,12 @@ class HCFLoader extends PluginBase
     }
     $this->translation = new Translation($this);
 
-    //WEBHOOKS
-    $this->webhookUrl = $this->getConfig()->get("webhooks")["global"];
-    $this->kothWebhook = $this->getConfig()->get("webhooks")["koth"];
-    $this->sotwWebhook = $this->getConfig()->get("webhooks")["sotw"];
-    $this->eotwWebhook = $this->getConfig()->get("webhooks")["eotw"];
+    $this->configData = new ConfigData($this->getConfig()->getAll());
+    var_dump($this->getConfig()->getAll(true));
 
-    $this->border = $this->getConfig()->getNested("map-border");
-    
-    $this->getServer()->getConfigGroup()->setConfigString("motd", $this->getConfig()->get("server-name"));
-    $this->getServer()->getConfigGroup()->setConfigInt("max-players", $this->getConfig()->get("server-slots"));
+    //$this->getServer()->getConfigGroup()->setConfigString("motd", $this->getConfig()->get("server-name"));
+    //$this->getServer()->getConfigGroup()->setConfigInt("max-players", $this->getConfig()->get("server-slots"));
+    //$this->getServer()->getConfigGroup()->save();
   }
   
   public function onEnable(): void
@@ -118,35 +107,15 @@ class HCFLoader extends PluginBase
   {
     $this->getServer()->getPluginManager()->registerEvents($listener, $this);
   }
-  
-  function getWebhookGlobal(): string
-  {
-    return $this->webhookUrl;
-  }
-
-  function getWebhookKoth(): string
-  {
-    return $this->kothWebhook;
-  }
-
-  function getWebhookSOTW(): string
-  {
-    return $this->sotwWebhook;
-  }
-
-  function getWebhookEOTW(): string
-  {
-    return $this->eotwWebhook;
-  }
 
   function getTranslation(): Translation
   {
     return $this->translation;
   }
   
-  function getMapBorder(): int
+  function getConfigData(): ConfigData
   {
-    return $this->border;
+    return $this->configData;
   }
 
   static function getRegionManager(): RegionManager
