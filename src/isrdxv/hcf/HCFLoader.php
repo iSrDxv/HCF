@@ -135,6 +135,11 @@ class HCFLoader extends PluginBase
     return $this->eotwWebhook;
   }
 
+  function getTranslation(): Translation
+  {
+    return $this->translation;
+  }
+  
   static function getRegionManager(): RegionManager
   {
     return RegionManager::getInstance();
