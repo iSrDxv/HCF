@@ -1,30 +1,32 @@
-# your server name
-server-name: "§bServer§fHCF §7| §6Map 1"
-# Your server description, explain what your server is about, WARNING: this will be used in the settings menu 
-server-description: "A simple hcf core, i think"
-# Your MOTD
-server-motd: "MyServer - HCF"
-# This is necessary, we cannot guarantee that your server will support a thousand simultaneous players, add limits to your ideas man
-server-slots: 100
-# IP of your server
-server-address: "server.com"
-# Put the server in maintenance
-server-maintenance: false
-# Players that will be able to enter the server if it is full
-server-bypass: 
- - "SrClauYT"
- - "SrClauDev8498"
-
-# Border
-map-border: 2000
+SERVER:
+  # your server name
+  NAME: "§bServer§fHCF §7| §6Map 1"
+  # Your server description, explain what your server is about, WARNING: this will be used in the settings menu 
+  DESCRIPTION: "A simple hcf core, i think"
+  # Your MOTD
+  MOTD: "MyServer - HCF"
+  # This is necessary, we cannot guarantee that your server will support a thousand simultaneous players, add limits to your ideas man
+  MAX-PLAYERS: 100
+  # IP of your server
+  ADDRESS: "server.com"
+  # Put the server in maintenance
+  MAINTENANCE: false
+  # Players that will be able to enter the server if it is full
+  BYPASS: 
+    - "SrClauYT"
+    - "SrClauDev8498"
+  MAP_BORDER: 2000
 
 # Faction custom data
-FACTION_PLAYER:
+FACTION-PLAYER:
   MAX-ALLIES: 0
-  ALLY_FRIENDLY_FIRE: false
-  MAX_LIMIT: 1
+  ALLY-FRIENDLY-FIRE: false
+  MAX-LIMIT: 1
+  WARZONE-BREAK-AFTER:
+    OVERWORLD: 300
+    NETHER: 200
  
-webhooks:
+WEBHOOKS:
   global: ""
   koth: ""
   sotw: ""
