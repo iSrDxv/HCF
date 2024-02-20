@@ -6,16 +6,16 @@ use pocketmine\utils\EnumTrait;
 
 /**
  * @method static LEADER()
- * @mdthod static CO_LEADER()
+ * @method static CO_LEADER()
  * @method static MEMBER()
  */
 final class FactionRole
 {
   use EnumTrait;
   
-  abstract protected static function setup(): void
+  protected static function setup(): void
   {
-    self::registerAll(new self("LEADER"), new self("CO_LEADER"), new self("MEMBER"));
+    self::registerAll(new self("LEADER"), new self("CO_LEADER"), new self("MEMBER"), new self("REVISED"));
   }
 
 }

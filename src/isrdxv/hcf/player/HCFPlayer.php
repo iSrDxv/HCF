@@ -3,6 +3,7 @@
 namespace isrdxv\hcf\player;
 
 use isrdxv\hcf\HCFLoader;
+use isrdxv\hcf\faction\Faction;
 
 use pocketmine\player\Player;
 use pocketmine\Server;
@@ -25,7 +26,7 @@ class HCFPlayer extends Player
   
   private Scoreboard $scoreboard;
   
-  private CacheManager $cache;
+  //private CacheManager $cache;
   
   private ?Faction $faction;
   
@@ -36,11 +37,11 @@ class HCFPlayer extends Player
       $this->cooldown = new CooldownManager();
     }
     if (empty($this->scoreboard)) {
-      $this->scoreboard = Scoreboard ::create($this->getPlayer(), HCFLoader::getInstance()->getConfig()->get("server-name"));
+      $this->scoreboard = Scoreboard ::create($this, HCFLoader::getInstance()->getConfig()->get("server-name"));
     }
-    if (empty($this->cache)) {
+    /*if (empty($this->cache)) {
       $this->cache = new CacheManager();
-    }
+    }*/
   }
   
   public function getCooldown(): CooldownManager
@@ -53,10 +54,10 @@ class HCFPlayer extends Player
     return $this->scoreboard;
   }
   
-  public function getCache(): CacheManager
+  /*public function getCache(): CacheManager
   {
     return $this->cache;
-  }
+  }*/
   
   public function getFaction(): ?Faction
   {

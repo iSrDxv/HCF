@@ -71,7 +71,9 @@ class HCFListener implements Listener
     if ($player->getScoreboard() !== null) {
       $player->getScoreboard()->init();
     }
-    $player->teleport(Server::getInstance()->getWorldManager()->getDefaultWorld()->getSpawnLocation(), $player->getEyeHeight(), $player->getEyeHeight());
+    if (!$player->hasPlayedBefore()) {
+      $player->teleport(Server::getInstance()->getWorldManager()->getDefaultWorld()->getSpawnLocation(), $player->getEyeHeight(), $player->getEyeHeight());
+    }
   }
   
   public function onQuit(PlayerQuitEvent $event): void
@@ -82,12 +84,11 @@ class HCFListener implements Listener
   
   public function onChunkLoad(ChunkLoadEvent $event): void
   {
-    $border = $this->loader->getConfig()->getNested("map-border");
     $world = Server::getInstance()->getWorldManager()->getDefaultWorld();
-    $limitX = $world->getSpawnLocation()->getFloorX() + $border >> 4;
-    $limitZ = $world->getSpawnLocation()->getFloorZ() + $border >> 4;
-    $subtractLimitX = $world->getSpawnLocation()->getFloorX() + -$border >> 4;
-    $subtractLimitZ = $world->getSpawnLocation()->getFloorZ() + -$border >> 4;
+    $limitX = $world->getSpawnLocation()->getFloorX() + $this->loader->getMapBorder() >> 4;
+    $limitZ = $world->getSpawnLocation()->getFloorZ() + $this->loader->getMapBorder() >> 4;
+    $subtractLimitX = $world->getSpawnLocation()->getFloorX() + -$this->loader->getMapBorder() >> 4;
+    $subtractLimitZ = $world->getSpawnLocation()->getFloorZ() + -$this->loader->getMapBorder() >> 4;
     if (($event->getChunkX() >> 4) > $limitX || ($event->getChunkZ() >> 4) > $limitZ) {
       $world->unloadChunk($event->getChunkX(), $event->getChunkZ());
     }

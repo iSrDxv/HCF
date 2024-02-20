@@ -19,9 +19,10 @@ server-bypass:
 map-border: 2000
 
 # Faction custom data
-faction:
-  max-allies: 0
-  max-players: 1
+FACTION_PLAYER:
+  MAX-ALLIES: 0
+  ALLY_FRIENDLY_FIRE: false
+  MAX_LIMIT: 1
  
 webhooks:
   global: ""

@@ -44,6 +44,8 @@ class HCFLoader extends PluginBase
   
   private Translation $translation;
 
+  private int $border;
+
   private string $webhookUrl;
 
   private string $kothWebhook;
@@ -81,6 +83,8 @@ class HCFLoader extends PluginBase
     $this->sotwWebhook = $this->getConfig()->get("webhooks")["sotw"];
     $this->eotwWebhook = $this->getConfig()->get("webhooks")["eotw"];
 
+    $this->border = $this->getConfig()->getNested("map-border");
+    
     $this->getServer()->getConfigGroup()->setConfigString("motd", $this->getConfig()->get("server-name"));
     $this->getServer()->getConfigGroup()->setConfigInt("max-players", $this->getConfig()->get("server-slots"));
   }
@@ -140,6 +144,11 @@ class HCFLoader extends PluginBase
     return $this->translation;
   }
   
+  function getMapBorder(): int
+  {
+    return $this->border;
+  }
+
   static function getRegionManager(): RegionManager
   {
     return RegionManager::getInstance();
