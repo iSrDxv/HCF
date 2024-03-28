@@ -16,8 +16,6 @@
 
 namespace isrdxv\hcf;
 
-use PDO;
-
 use isrdxv\hcf\HCF;
 use isrdxv\hcf\manager\{
   TaskManager,
@@ -39,6 +37,9 @@ use pocketmine\utils\{
 use exodus\translation\Translation;
 use isrdxv\hcf\config\ConfigData;
 
+/**
+ * TODO: Find a better way to use database
+ */
 class HCFLoader extends PluginBase
 {
   use SingletonTrait;
