@@ -74,9 +74,9 @@ class HCFLoader extends PluginBase
     $this->configData = new ConfigData($this->getConfig()->getAll());
     var_dump($this->getConfig()->getAll(true));
 
-    //$this->getServer()->getConfigGroup()->setConfigString("motd", $this->getConfig()->get("server-name"));
-    //$this->getServer()->getConfigGroup()->setConfigInt("max-players", $this->getConfig()->get("server-slots"));
-    //$this->getServer()->getConfigGroup()->save();
+    $this->getServer()->getConfigGroup()->setConfigString("motd", $this->configData->getName());
+    $this->getServer()->getConfigGroup()->setConfigInt("max-players", $this->configData->getMaxPlayers());
+    $this->getServer()->getConfigGroup()->save();
   }
   
   public function onEnable(): void
